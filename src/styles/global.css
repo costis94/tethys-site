@@ -1,19 +1,121 @@
+/* Tailwind v4 */
 @import "tailwindcss";
 
-:root {
-  color-scheme: light;
+/* daisyUI plugin for Tailwind v4 */
+@plugin "daisyui";
+
+/* -------------------------------------------------
+   Site helpers (για να ΜΗ γράφεις 80 classes παντού)
+   Στόχος: στα pages γράφεις απλά: section / container-page / grid-2 / lead / etc.
+-------------------------------------------------- */
+
+.container-page {
+  @apply mx-auto max-w-6xl px-6;
 }
-html,
-body {
-  height: 100%;
+
+/* συχνά sections */
+.section {
+  @apply py-16 sm:py-20;
 }
-body {
-  margin: 0;
-  font-family:
-    system-ui,
-    -apple-system,
-    Segoe UI,
-    Roboto,
-    Arial,
-    sans-serif;
+
+.section-sm {
+  @apply py-10 sm:py-12;
+}
+
+.section-border {
+  @apply border-t border-base-300;
+}
+
+/* layout primitives */
+.stack {
+  @apply flex flex-col;
+}
+
+.stack-md {
+  @apply flex flex-col gap-6;
+}
+
+.stack-lg {
+  @apply flex flex-col gap-10;
+}
+
+.grid-2 {
+  @apply grid gap-10 lg:grid-cols-2 lg:items-center;
+}
+
+.grid-3 {
+  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+/* typography helpers */
+.kicker {
+  @apply text-sm font-medium text-primary;
+}
+
+.h2 {
+  @apply text-2xl sm:text-3xl font-semibold tracking-tight;
+}
+
+.lead {
+  @apply text-base sm:text-lg text-base-content/70;
+}
+
+/* hero */
+.hero-title {
+  @apply text-4xl sm:text-5xl font-semibold tracking-tight leading-tight;
+}
+
+.hero-lead {
+  @apply mt-6 text-lg text-base-content/70 max-w-xl;
+}
+
+/* cards */
+.card-soft {
+  @apply card bg-base-100 border border-base-300 shadow-sm;
+}
+
+.card-pad {
+  @apply card-body p-6;
+}
+
+/* subtle panel (για feature strips / highlights) */
+.panel {
+  @apply rounded-2xl border border-base-300 bg-base-100/60 backdrop-blur;
+}
+
+/* buttons: ένα “marketing” style για CTA που να δείχνει premium */
+.btn-cta {
+  @apply btn btn-primary gap-2 rounded-xl;
+}
+
+.btn-ghosty {
+  @apply btn btn-ghost gap-2 rounded-xl;
+}
+
+.badge-soft {
+  @apply badge badge-outline border-base-300 text-base-content/70;
+}
+
+/* -------------------------------------------------
+   Motion One helpers (χωρίς να γράφεις css σελίδα-σελίδα)
+   Χρήση: class="reveal" + data-reveal="up|fade|left|right"
+-------------------------------------------------- */
+
+.reveal {
+  /* baseline: δεν κάνει τίποτα μόνο του, εξαρτάται από JS (Motion One) */
+  will-change: transform, opacity;
+}
+
+/* -------------------------------------------------
+   Small opinionated defaults
+-------------------------------------------------- */
+
+/* καλύτερο selection */
+::selection {
+  @apply bg-primary/20;
+}
+
+/* ομαλό scroll */
+html {
+  scroll-behavior: smooth;
 }

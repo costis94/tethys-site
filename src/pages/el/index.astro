@@ -1,133 +1,40 @@
 ---
 import Layout from "../../components/Layout.astro";
+
+import Hero from "../../components/home/Hero.astro";
+import Problem from "../../components/home/Problem.astro";
+import Features from "../../components/home/Features.astro";
+import OfflineField from "../../components/home/OfflineField.astro";
+import WebAdmin from "../../components/home/WebAdmin.astro";
+import CTA from "../../components/home/CTA.astro";
 ---
 
 <Layout
-  title="Tethys — Ψηφιακή διαχείριση άρδευσης"
-  description="Offline-first πλατφόρμα διαχείρισης άρδευσης για ΤΟΕΒ και οργανισμούς ύδρευσης."
+  title="Tethys — Ψηφιακή διαχείριση άρδευσης (Offline-first)"
+  description="Offline-first πλατφόρμα για ΤΟΕΒ: Android εφαρμογή για καταγραφές στο πεδίο + Web διαχείριση για πλήρη έλεγχο."
   lang="el"
 >
+  <Hero />
+  <Problem />
+  <Features />
+  <OfflineField />
+  <WebAdmin />
+  <CTA />
 
- <!-- HERO -->
-<section class="relative overflow-hidden">
+  <!-- Motion One: simple reveal animations -->
+  <script type="module">
+    import { animate, inView } from "motion";
 
-  <!-- Background full width -->
-  <div class="absolute inset-0">
-    <img
-      src="/hero-bg.jpg"
-      alt=""
-      class="h-full w-full object-cover"
-    />
-    <!-- softer overlay -->
-    <div class="absolute inset-0 bg-white/55"></div>
-  </div>
-
-  <div class="relative mx-auto max-w-6xl px-6 py-32">
-
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <!-- TEXT -->
-      <div>
-        <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
-          Ψηφιακή διαχείριση άρδευσης
-          <span class="text-slate-500">χωρίς χαρτιά.</span>
-        </h1>
-
-        <p class="mt-6 text-lg text-slate-700 max-w-xl">
-          Το Tethys οργανώνει αγροτεμάχια, κατανάλωση νερού και αντλιοστάσια
-          σε ένα ενιαίο, ασφαλές σύστημα — με offline λειτουργία στο πεδίο.
-        </p>
-
-        <div class="mt-10 flex gap-4">
-          <a
-            href="/el/contact"
-            class="rounded-md bg-slate-900 px-6 py-3 text-sm font-medium text-white hover:bg-slate-800 transition"
-          >
-            Ζητήστε παρουσίαση
-          </a>
-
-          <a
-            href="/el/product"
-            class="rounded-md border border-slate-300 px-6 py-3 text-sm font-medium hover:bg-white transition"
-          >
-            Δείτε το προϊόν
-          </a>
-        </div>
-      </div>
-
-      <!-- DEVICE -->
-      <div class="relative flex justify-center">
-
-        <div class="relative w-80 sm:w-[420px]">
-
-          <!-- softer shadow -->
-          <div class="absolute bottom-6 h-32 w-80 bg-black/20 blur-3xl rounded-full"></div>
-
-          <img
-            src="/device.png"
-            alt="Mobile device"
-            class="relative w-full drop-shadow-2xl"
-          />
-
-          
-
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-  <!-- PROBLEM -->
-  <section class="py-16 border-t border-slate-200">
-    <h2 class="text-2xl font-semibold">Το πρόβλημα σήμερα</h2>
-
-    <div class="mt-8 grid sm:grid-cols-3 gap-6 text-sm text-slate-600">
-      <div>Χαρτιά και Excel χωρίς ιστορικό.</div>
-      <div>Δυσκολία ελέγχου κατανάλωσης νερού.</div>
-      <div>Έλλειψη διαφάνειας και audit trail.</div>
-    </div>
-  </section>
-
-  <!-- SOLUTION -->
-  <section class="py-16 border-t border-slate-200">
-    <h2 class="text-2xl font-semibold">Η λύση</h2>
-
-    <div class="mt-8 grid sm:grid-cols-3 gap-8">
-      <div>
-        <div class="font-medium">Offline χάρτης αγροτεμαχίων</div>
-        <p class="mt-2 text-sm text-slate-600">
-          Πρόσβαση σε δεδομένα ακόμα και χωρίς σύνδεση.
-        </p>
-      </div>
-
-      <div>
-        <div class="font-medium">Καταγραφή αναφορών πεδίου</div>
-        <p class="mt-2 text-sm text-slate-600">
-          Ιστορικό ενεργειών με πλήρη διαφάνεια.
-        </p>
-      </div>
-
-      <div>
-        <div class="font-medium">Έλεγχος αντλιοστασίων</div>
-        <p class="mt-2 text-sm text-slate-600">
-          Παρακολούθηση λειτουργίας και ενεργειακής κατανάλωσης.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-20 border-t border-slate-200 text-center">
-    <h2 class="text-3xl font-semibold">
-      Θέλετε να οργανώσετε τη διαχείριση άρδευσης;
-    </h2>
-
-    <a href="/el/contact"
-       class="mt-8 inline-flex rounded-xl bg-slate-900 px-8 py-4 text-sm font-medium text-white hover:bg-slate-800">
-      Επικοινωνήστε μαζί μας
-    </a>
-  </section>
-
+    const els = document.querySelectorAll("[data-anim]");
+    els.forEach((el) => {
+      const delay = Number(el.getAttribute("data-anim-delay") || "0");
+      inView(el, () => {
+        animate(
+          el,
+          { opacity: [0, 1], transform: ["translateY(10px)", "translateY(0px)"] },
+          { duration: 0.5, easing: "ease-out", delay }
+        );
+      }, { margin: "-10% 0px -10% 0px" });
+    });
+  </script>
 </Layout>

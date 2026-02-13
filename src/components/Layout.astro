@@ -7,33 +7,79 @@ type Props = {
   title?: string;
   description?: string;
   lang?: "el" | "en";
+  canonicalPath?: string; // optional override
 };
 
 const {
   title = "Tethys",
   description = "Offline-first πλατφόρμα για διαχείριση άρδευσης.",
   lang = "el",
+  canonicalPath,
 } = Astro.props;
+
+// Canonical: prefer explicit prop, else current pathname
+const canonicalUrl = `https://www.tethys.systems${canonicalPath ?? Astro.url.pathname}`;
+
+// Basic hreflang (adjust if you later add per-page mapping)
+const pathname = Astro.url.pathname;
+const elHref = `https://www.tethys.systems${pathname.startsWith("/en") ? pathname.replace(/^\/en/, "/el") : pathname}`;
+const enHref = `https://www.tethys.systems${pathname.startsWith("/el") ? pathname.replace(/^\/el/, "/en") : pathname}`;
 ---
 
-<html lang={lang}>
+<html lang={lang} data-theme="tethys">
   <head>
-    <link rel="canonical" href={`https://www.tethys.systems${Astro.url.pathname}`} />
-    <link rel="alternate" hreflang="el" href="https://www.tethys.systems/el/" />
-<link rel="alternate" hreflang="en" href="https://www.tethys.systems/en/" />
-<link rel="alternate" hreflang="x-default" href="https://www.tethys.systems/el/" />
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="el" href={elHref} />
+    <link rel="alternate" hreflang="en" href={enHref} />
+    <link rel="alternate" hreflang="x-default" href={elHref} />
+
+    <!-- Favicons (put your files in /public) -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Tethys" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content="https://www.tethys.systems/og.jpg" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://www.tethys.systems/og.jpg" />
   </head>
 
-  <body class="bg-white text-slate-900">
-    <main class="mx-auto max-w-5xl px-6 py-10">
-      <Header />
+  <body class="min-h-screen bg-base-100 text-base-content antialiased">
+    <!-- Header full width -->
+    <Header />
+
+    <!-- Page content full width (each section decides its own container) -->
+    <main>
       <slot />
-      <Footer />
     </main>
+
+    <!-- Footer full width -->
+    <Footer />
+
+    <!-- Optional: tiny global smooth-scroll (keep/remove) -->
+    <script>
+      // prevent old mobile menu staying open on resize (nice UX)
+      const mq = window.matchMedia("(min-width: 768px)");
+      mq.addEventListener?.("change", (e) => {
+        if (e.matches) {
+          const menu = document.getElementById("mobile-menu");
+          menu?.classList.add("hidden");
+        }
+      });
+    </script>
   </body>
 </html>
