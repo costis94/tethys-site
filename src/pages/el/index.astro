@@ -11,33 +11,34 @@ import Layout from "../../components/Layout.astro";
  <!-- HERO -->
 <section class="relative overflow-hidden">
 
-  <!-- Background -->
+  <!-- Background full width -->
   <div class="absolute inset-0">
     <img
-      src="/hero-bg.png"
+      src="/hero-bg.jpg"
       alt=""
       class="h-full w-full object-cover"
     />
-    <div class="absolute inset-0 bg-white/70"></div>
+    <!-- softer overlay -->
+    <div class="absolute inset-0 bg-white/55"></div>
   </div>
 
-  <div class="relative mx-auto max-w-6xl px-6 py-24">
+  <div class="relative mx-auto max-w-6xl px-6 py-32">
 
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
 
-      <!-- LEFT TEXT -->
+      <!-- TEXT -->
       <div>
         <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
           Ψηφιακή διαχείριση άρδευσης
-          <span class="text-slate-400">χωρίς χαρτιά.</span>
+          <span class="text-slate-500">χωρίς χαρτιά.</span>
         </h1>
 
-        <p class="mt-6 text-lg text-slate-600 max-w-xl">
+        <p class="mt-6 text-lg text-slate-700 max-w-xl">
           Το Tethys οργανώνει αγροτεμάχια, κατανάλωση νερού και αντλιοστάσια
           σε ένα ενιαίο, ασφαλές σύστημα — με offline λειτουργία στο πεδίο.
         </p>
 
-        <div class="mt-8 flex gap-4">
+        <div class="mt-10 flex gap-4">
           <a
             href="/el/contact"
             class="rounded-md bg-slate-900 px-6 py-3 text-sm font-medium text-white hover:bg-slate-800 transition"
@@ -47,34 +48,28 @@ import Layout from "../../components/Layout.astro";
 
           <a
             href="/el/product"
-            class="rounded-md border border-slate-300 px-6 py-3 text-sm font-medium hover:bg-slate-50 transition"
+            class="rounded-md border border-slate-300 px-6 py-3 text-sm font-medium hover:bg-white transition"
           >
             Δείτε το προϊόν
           </a>
         </div>
       </div>
 
-      <!-- RIGHT DEVICE -->
+      <!-- DEVICE -->
       <div class="relative flex justify-center">
 
-        <!-- Shadow -->
-        <div class="absolute bottom-6 h-40 w-64 bg-black/10 blur-3xl rounded-full"></div>
+        <div class="relative w-80 sm:w-[420px]">
 
-        <div class="relative w-64 sm:w-80">
+          <!-- softer shadow -->
+          <div class="absolute bottom-6 h-32 w-80 bg-black/20 blur-3xl rounded-full"></div>
 
-          <!-- Device frame -->
           <img
             src="/device.png"
             alt="Mobile device"
-            class="w-full"
+            class="relative w-full drop-shadow-2xl"
           />
 
-          <!-- Screenshot inside device -->
-          <img
-            src="/app-screenshot.png"
-            alt="Tethys Android App"
-            class="absolute top-[6%] left-[9%] w-[82%] rounded-xl"
-          />
+          
 
         </div>
       </div>
