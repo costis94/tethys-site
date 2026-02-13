@@ -1,0 +1,138 @@
+---
+import Layout from "../../components/Layout.astro";
+---
+
+<Layout
+  title="Tethys — Ψηφιακή διαχείριση άρδευσης"
+  description="Offline-first πλατφόρμα διαχείρισης άρδευσης για ΤΟΕΒ και οργανισμούς ύδρευσης."
+  lang="el"
+>
+
+ <!-- HERO -->
+<section class="relative overflow-hidden">
+
+  <!-- Background -->
+  <div class="absolute inset-0">
+    <img
+      src="/hero-bg.png"
+      alt=""
+      class="h-full w-full object-cover"
+    />
+    <div class="absolute inset-0 bg-white/70"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-6 py-24">
+
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+      <!-- LEFT TEXT -->
+      <div>
+        <h1 class="text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
+          Ψηφιακή διαχείριση άρδευσης
+          <span class="text-slate-400">χωρίς χαρτιά.</span>
+        </h1>
+
+        <p class="mt-6 text-lg text-slate-600 max-w-xl">
+          Το Tethys οργανώνει αγροτεμάχια, κατανάλωση νερού και αντλιοστάσια
+          σε ένα ενιαίο, ασφαλές σύστημα — με offline λειτουργία στο πεδίο.
+        </p>
+
+        <div class="mt-8 flex gap-4">
+          <a
+            href="/el/contact"
+            class="rounded-md bg-slate-900 px-6 py-3 text-sm font-medium text-white hover:bg-slate-800 transition"
+          >
+            Ζητήστε παρουσίαση
+          </a>
+
+          <a
+            href="/el/product"
+            class="rounded-md border border-slate-300 px-6 py-3 text-sm font-medium hover:bg-slate-50 transition"
+          >
+            Δείτε το προϊόν
+          </a>
+        </div>
+      </div>
+
+      <!-- RIGHT DEVICE -->
+      <div class="relative flex justify-center">
+
+        <!-- Shadow -->
+        <div class="absolute bottom-6 h-40 w-64 bg-black/10 blur-3xl rounded-full"></div>
+
+        <div class="relative w-64 sm:w-80">
+
+          <!-- Device frame -->
+          <img
+            src="/device.png"
+            alt="Mobile device"
+            class="w-full"
+          />
+
+          <!-- Screenshot inside device -->
+          <img
+            src="/app-screenshot.png"
+            alt="Tethys Android App"
+            class="absolute top-[6%] left-[9%] w-[82%] rounded-xl"
+          />
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- PROBLEM -->
+  <section class="py-16 border-t border-slate-200">
+    <h2 class="text-2xl font-semibold">Το πρόβλημα σήμερα</h2>
+
+    <div class="mt-8 grid sm:grid-cols-3 gap-6 text-sm text-slate-600">
+      <div>Χαρτιά και Excel χωρίς ιστορικό.</div>
+      <div>Δυσκολία ελέγχου κατανάλωσης νερού.</div>
+      <div>Έλλειψη διαφάνειας και audit trail.</div>
+    </div>
+  </section>
+
+  <!-- SOLUTION -->
+  <section class="py-16 border-t border-slate-200">
+    <h2 class="text-2xl font-semibold">Η λύση</h2>
+
+    <div class="mt-8 grid sm:grid-cols-3 gap-8">
+      <div>
+        <div class="font-medium">Offline χάρτης αγροτεμαχίων</div>
+        <p class="mt-2 text-sm text-slate-600">
+          Πρόσβαση σε δεδομένα ακόμα και χωρίς σύνδεση.
+        </p>
+      </div>
+
+      <div>
+        <div class="font-medium">Καταγραφή αναφορών πεδίου</div>
+        <p class="mt-2 text-sm text-slate-600">
+          Ιστορικό ενεργειών με πλήρη διαφάνεια.
+        </p>
+      </div>
+
+      <div>
+        <div class="font-medium">Έλεγχος αντλιοστασίων</div>
+        <p class="mt-2 text-sm text-slate-600">
+          Παρακολούθηση λειτουργίας και ενεργειακής κατανάλωσης.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 border-t border-slate-200 text-center">
+    <h2 class="text-3xl font-semibold">
+      Θέλετε να οργανώσετε τη διαχείριση άρδευσης;
+    </h2>
+
+    <a href="/el/contact"
+       class="mt-8 inline-flex rounded-xl bg-slate-900 px-8 py-4 text-sm font-medium text-white hover:bg-slate-800">
+      Επικοινωνήστε μαζί μας
+    </a>
+  </section>
+
+</Layout>

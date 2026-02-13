@@ -1,42 +1,129 @@
 ---
 const items = [
-  { href: "/", label: "Αρχική" },
-  { href: "/docs", label: "Τεκμηρίωση" },
-  { href: "/contact", label: "Επικοινωνία" },
+  { href: "/el/", label: "Αρχική" },
+  { href: "/el/product", label: "Προϊόν" },
+  { href: "/el/security", label: "Ασφάλεια" },
+  { href: "/el/contact", label: "Επικοινωνία" },
 ];
+
+const currentPath = Astro.url.pathname;
+const isEnglish = currentPath.startsWith("/en");
+
+const switchTo = isEnglish
+  ? currentPath.replace(/^\/en/, "/el")
+  : currentPath.replace(/^\/el/, "/en");
 ---
 
-<header class="mb-12">
-  <div class="flex items-center justify-between gap-4">
-<a href="/" class="flex items-center gap-3 font-semibold tracking-tight">
-  <img
-    src="/brand/logo.svg"
-    alt="Tethys"
-    class="h-16 w-auto"
-    loading="eager"
-  />
-  <span class="text-base">Tethys Platform</span>
-</a>
+<header class="bg-white border-b border-slate-200">
+  <div class="mx-auto max-w-6xl px-6">
 
+    <!-- Top Row -->
+    <div class="flex h-16 items-center justify-between">
 
-    <nav class="flex items-center gap-1">
-      {items.map((it) => (
+      <!-- Logo -->
+      <a href="/el/" class="flex items-center gap-3">
+        <img
+          src="/brand/logo.svg"
+          alt="Tethys"
+          class="h-16 w-auto"
+        />
+        
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8 text-md">
+        {items.map((it) => {
+          const active =
+            currentPath === it.href ||
+            (it.href !== "/el/" && currentPath.startsWith(it.href));
+
+          return (
+            <a
+              href={it.href}
+              class={`transition ${
+                active
+                  ? "text-slate-900 font-medium"
+                  : "text-slate-600 hover:text-slate-900"
+              }`}
+            >
+              {it.label}
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Right Side -->
+      <div class="hidden md:flex items-center gap-6 text-sm">
+
+        <!-- Language Switch -->
         <a
-          href={it.href}
-          class="rounded-lg px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+          href={switchTo}
+          class="text-slate-600 hover:text-slate-900 transition"
         >
-          {it.label}
+          {isEnglish ? "EΛ" : "EN"}
         </a>
-      ))}
 
-      <!-- placeholder για EN αργότερα -->
-      <span class="ml-2 hidden sm:inline-flex items-center gap-2 rounded-lg border border-slate-200 px-2 py-1 text-xs text-slate-600">
-        EL
-        <span class="text-slate-400">|</span>
-        EN (soon)
-      </span>
-    </nav>
+        <!-- CTA -->
+        <a
+          href="/el/contact"
+          class="rounded-md bg-slate-900 px-4 py-2 text-white text-xs font-medium hover:bg-slate-800 transition"
+        >
+          Παρουσίαση
+        </a>
+
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button
+        id="mobile-toggle"
+        class="md:hidden text-slate-700 text-xl"
+        aria-label="Menu"
+      >
+        ☰
+      </button>
+
+    </div>
   </div>
-
-  <div class="mt-6 h-px bg-slate-200"></div>
 </header>
+
+<!-- Mobile Menu -->
+<div
+  id="mobile-menu"
+  class="hidden md:hidden bg-white border-b border-slate-200"
+>
+  <div class="px-6 py-4 flex flex-col gap-4 text-md">
+
+    {items.map((it) => (
+      <a
+        href={it.href}
+        class="text-slate-600 hover:text-slate-900"
+      >
+        {it.label}
+      </a>
+    ))}
+
+    <a
+      href={switchTo}
+      class="text-slate-600 hover:text-slate-900"
+    >
+      {isEnglish ? "EL" : "EN"}
+    </a>
+
+    <a
+      href="/el/contact"
+      class="mt-2 rounded-md bg-slate-900 px-4 py-2 text-white text-center text-xs font-medium hover:bg-slate-800 transition"
+    >
+      Παρουσίαση
+    </a>
+
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById("mobile-toggle");
+  const menu = document.getElementById("mobile-menu");
+
+  btn?.addEventListener("click", () => {
+    menu?.classList.toggle("hidden");
+  });
+</script>
