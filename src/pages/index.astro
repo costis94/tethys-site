@@ -1,0 +1,52 @@
+---
+import Layout from "../components/Layout.astro";
+---
+
+<Layout title="Tethys" description="Offline-first πλατφόρμα για διαχείριση άρδευσης.">
+  <div class="flex flex-col gap-6">
+    <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 px-3 py-1 text-sm text-slate-600">
+      <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+      Στατικό site (v0)
+    </div>
+
+    <h1 class="text-4xl font-semibold tracking-tight sm:text-5xl">Tethys</h1>
+
+    <p class="max-w-2xl text-lg text-slate-600">
+      Offline-first πλατφόρμα για ΤΟΕΒ/φορείς άρδευσης: χάρτης αγροτεμαχίων, αναφορές πεδίου, ιστορικό και έλεγχος λειτουργίας.
+    </p>
+
+    <div class="flex flex-wrap gap-3">
+      <a
+        href="/docs"
+        class="rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white hover:bg-slate-800"
+      >
+        Τεκμηρίωση
+      </a>
+      <a
+        href="/contact"
+        class="rounded-xl border border-slate-300 px-5 py-3 text-sm font-medium text-slate-900 hover:bg-slate-50"
+      >
+        Επικοινωνία
+      </a>
+    </div>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-3">
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <div class="text-sm font-semibold">Offline χάρτης</div>
+        <div class="mt-1 text-sm text-slate-600">MapLibre bundles, γρήγορα στο πεδίο χωρίς internet.</div>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <div class="text-sm font-semibold">Αναφορές πεδίου</div>
+        <div class="mt-1 text-sm text-slate-600">Καταγραφή + ιστορικό, έτοιμο για audit.</div>
+      </div>
+      <div class="rounded-2xl border border-slate-200 p-5">
+        <div class="text-sm font-semibold">Αντλιοστάσια</div>
+        <div class="mt-1 text-sm text-slate-600">Μετρήσεις ενέργειας και λειτουργίας ανά εγκατάσταση.</div>
+      </div>
+    </div>
+
+    <footer class="mt-16 border-t border-slate-200 pt-6 text-sm text-slate-500">
+      © {new Date().getFullYear()} Tethys
+    </footer>
+  </div>
+</Layout>
