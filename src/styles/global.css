@@ -1,19 +1,52 @@
+/* Εξωτερικές γραμματοσειρές για πιο premium/σύγχρονο αποτέλεσμα */
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap");
+
 /* Tailwind v4 */
 @import "tailwindcss";
+@source "../../node_modules/flowbite";
 
 /* daisyUI plugin for Tailwind v4 */
 @plugin "daisyui";
+@plugin "flowbite/plugin";
 
 /* -------------------------------------------------
-   Site helpers (για να ΜΗ γράφεις 80 classes παντού)
-   Στόχος: στα pages γράφεις απλά: section / container-page / grid-2 / lead / etc.
+   Design tokens (light-first, professional look)
 -------------------------------------------------- */
+:root {
+  --tethys-bg: #f2f6fb;
+  --tethys-surface: #ffffff;
+  --tethys-surface-soft: #f7fafc;
+  --tethys-line: #d8e1ec;
+  --tethys-text: #0d1b2a;
+  --tethys-text-soft: #516276;
+  --tethys-accent: #0b6bcb;
+  --tethys-accent-2: #18a58d;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Manrope", "Segoe UI", sans-serif;
+  color: var(--tethys-text);
+  background: #ffffff;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  @apply bg-sky-200 text-slate-900;
+}
 
 .container-page {
   @apply mx-auto max-w-6xl px-6;
 }
 
-/* συχνά sections */
 .section {
   @apply py-16 sm:py-20;
 }
@@ -23,99 +56,207 @@
 }
 
 .section-border {
-  @apply border-t border-base-300;
+  border-top: 1px solid var(--tethys-line);
 }
 
-/* layout primitives */
-.stack {
-  @apply flex flex-col;
-}
-
-.stack-md {
-  @apply flex flex-col gap-6;
-}
-
-.stack-lg {
-  @apply flex flex-col gap-10;
-}
-
-.grid-2 {
-  @apply grid gap-10 lg:grid-cols-2 lg:items-center;
-}
-
-.grid-3 {
-  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
-}
-
-/* typography helpers */
 .kicker {
-  @apply text-sm font-medium text-primary;
+  @apply inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em];
+  border-color: color-mix(in srgb, var(--tethys-accent) 45%, white);
+  background: color-mix(in srgb, var(--tethys-accent) 10%, white);
+  color: color-mix(in srgb, var(--tethys-accent) 80%, black);
 }
 
 .h2 {
-  @apply text-2xl sm:text-3xl font-semibold tracking-tight;
+  @apply text-3xl sm:text-4xl font-semibold leading-tight;
 }
 
 .lead {
-  @apply text-base sm:text-lg text-base-content/70;
+  color: var(--tethys-text-soft);
+  @apply text-base sm:text-lg;
 }
 
-/* hero */
 .hero-title {
-  @apply text-4xl sm:text-5xl font-semibold tracking-tight leading-tight;
+  @apply text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[1.05];
 }
 
 .hero-lead {
-  @apply mt-6 text-lg text-base-content/70 max-w-xl;
+  color: var(--tethys-text-soft);
+  @apply mt-6 max-w-2xl text-base sm:text-lg;
 }
 
-/* cards */
+/* Κάρτα με ελαφρύ glass effect και καθαρό περίγραμμα */
 .card-soft {
-  @apply card bg-base-100 border border-base-300 shadow-sm;
+  border: 1px solid var(--tethys-line);
+  background: color-mix(in srgb, var(--tethys-surface) 88%, #ffffff);
+  @apply rounded-3xl shadow-[0_14px_35px_rgba(15,35,60,0.08)];
 }
 
 .card-pad {
-  @apply card-body p-6;
+  @apply p-6 sm:p-7;
 }
 
-/* subtle panel (για feature strips / highlights) */
 .panel {
-  @apply rounded-2xl border border-base-300 bg-base-100/60 backdrop-blur;
+  border: 1px solid var(--tethys-line);
+  background: color-mix(in srgb, var(--tethys-surface-soft) 72%, white);
+  @apply rounded-2xl backdrop-blur;
 }
 
-/* buttons: ένα “marketing” style για CTA που να δείχνει premium */
 .btn-cta {
-  @apply btn btn-primary gap-2 rounded-xl;
+  @apply inline-flex h-11 items-center justify-center rounded-xl border-0 px-5 text-sm font-semibold transition;
+  background: linear-gradient(120deg, var(--tethys-accent), #127ce8);
+  color: #fff;
+  box-shadow: 0 12px 24px rgba(11, 107, 203, 0.28);
+}
+
+.btn-cta:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 26px rgba(11, 107, 203, 0.3);
 }
 
 .btn-ghosty {
-  @apply btn btn-ghost gap-2 rounded-xl;
+  border: 1px solid var(--tethys-line);
+  color: var(--tethys-text);
+  background: color-mix(in srgb, var(--tethys-surface) 80%, white);
+  @apply inline-flex h-11 items-center justify-center rounded-xl px-5 text-sm font-semibold transition;
+}
+
+.btn-ghosty:hover {
+  background: #ffffff;
+  border-color: #c6d4e5;
 }
 
 .badge-soft {
-  @apply badge badge-outline border-base-300 text-base-content/70;
+  @apply inline-flex items-center rounded-full border px-2.5 py-1 text-xs font-medium;
+  border-color: var(--tethys-line);
+  color: var(--tethys-text-soft);
+  background: color-mix(in srgb, var(--tethys-surface-soft) 88%, white);
 }
 
-/* -------------------------------------------------
-   Motion One helpers (χωρίς να γράφεις css σελίδα-σελίδα)
-   Χρήση: class="reveal" + data-reveal="up|fade|left|right"
--------------------------------------------------- */
+.contact-input {
+  @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-800 outline-none transition;
+}
+
+.contact-input:focus {
+  border-color: #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.22);
+}
+
+.tethys-header-shell {
+  border-bottom: 1px solid color-mix(in srgb, var(--tethys-line) 88%, white);
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+}
+
+.tethys-nav-link {
+  @apply rounded-xl px-4 py-2 text-sm font-semibold text-slate-600 transition;
+}
+
+.tethys-nav-link:hover {
+  @apply text-slate-900;
+  background: rgba(14, 93, 174, 0.08);
+}
+
+.tethys-nav-link-active {
+  color: #0b6bcb;
+  background: rgba(11, 107, 203, 0.14);
+}
+
+.tethys-lang-btn {
+  @apply inline-flex items-center rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition;
+}
+
+.tethys-lang-btn:hover {
+  @apply text-slate-900;
+  background: #f8fbff;
+}
+
+.tethys-menu-btn {
+  @apply h-10 min-h-0 rounded-xl border border-slate-200 bg-white px-3 text-sm font-medium text-slate-700;
+}
+
+.tethys-mobile-link {
+  @apply flex h-11 items-center rounded-xl px-3 text-sm font-medium text-slate-700 transition;
+}
+
+.tethys-mobile-link:hover {
+  background: rgba(11, 107, 203, 0.08);
+}
+
+.tethys-mobile-link-active {
+  color: #0b6bcb;
+  background: rgba(11, 107, 203, 0.14);
+}
+
+/* Phone mockup για hero (σωστή αναλογία + κάτω σκιά) */
+.phone-stage {
+  position: relative;
+  margin-inline: auto;
+  width: clamp(248px, 58vw, 340px);
+}
+
+.phone-glow {
+  position: absolute;
+  inset: -28px -18px auto;
+  height: 160px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 50% 50%, rgba(11, 107, 203, 0.28), transparent 68%);
+  filter: blur(10px);
+}
+
+.phone-shell {
+  position: relative;
+  z-index: 2;
+  border-radius: 34px;
+  padding: 10px;
+  background: linear-gradient(160deg, #10141c, #232936 68%, #0f1420);
+  box-shadow:
+    0 26px 48px rgba(9, 24, 42, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.phone-shell::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  pointer-events: none;
+}
+
+.phone-notch {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 14px;
+  width: 36%;
+  height: 22px;
+  transform: translateX(-50%);
+  border-radius: 0 0 14px 14px;
+  background: #0a0a0d;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.phone-screen {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 19.5;
+  object-fit: cover;
+  border-radius: 26px;
+}
+
+.phone-shadow {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  bottom: -22px;
+  width: 80%;
+  height: 28px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(3, 9, 18, 0.35);
+  filter: blur(16px);
+}
 
 .reveal {
-  /* baseline: δεν κάνει τίποτα μόνο του, εξαρτάται από JS (Motion One) */
   will-change: transform, opacity;
-}
-
-/* -------------------------------------------------
-   Small opinionated defaults
--------------------------------------------------- */
-
-/* καλύτερο selection */
-::selection {
-  @apply bg-primary/20;
-}
-
-/* ομαλό scroll */
-html {
-  scroll-behavior: smooth;
 }

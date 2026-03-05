@@ -1,49 +1,42 @@
+---
+import SectionIntro from "./ui/SectionIntro.astro";
+
+// Οι 3 πυλώνες του προϊόντος σε executive summary μορφή
+const pillars = [
+  {
+    title: "Android για πεδίο",
+    body: "Καταγραφές, αναφορές και συμβάντα σε πραγματικές συνθήκες λειτουργίας.",
+    chip: "FIELD OPS",
+  },
+  {
+    title: "Web για διοίκηση",
+    body: "Εποπτεία, ρόλοι, dashboards και συντονισμός από ένα περιβάλλον.",
+    chip: "ADMIN",
+  },
+  {
+    title: "Traceability by design",
+    body: "Ολες οι σημαντικές ενέργειες μένουν τεκμηριωμένες και μετρήσιμες.",
+    chip: "AUDIT",
+  },
+];
+---
+
 <section class="section section-border">
   <div class="container-page">
-    <div data-anim>
-      <div class="kicker">Τι είναι το Tethys</div>
-      <h2 class="mt-2 text-3xl font-semibold tracking-tight">Ένα σύστημα: Android για το πεδίο, Web για τη διοίκηση.</h2>
-      <p class="mt-4 text-base-content/70 max-w-3xl">
-        Το Tethys φτιάχνει έναν κοινό “άξονα αλήθειας” για αγροτεμάχια, ποτίσματα, αντλιοστάσια, αναφορές και ιστορικό.
-      </p>
-    </div>
+    <SectionIntro
+      kicker="Τι είναι το Tethys"
+      title="Ένα ενιαίο λειτουργικό σύστημα για άρδευση και επιχειρησιακό έλεγχο."
+      description="Συνδέει πεδίο και γραφείο σε κοινή βάση δεδομένων, ώστε οι αποφάσεις να στηρίζονται σε πραγματική εικόνα."
+    />
 
-    <div class="mt-10 grid lg:grid-cols-3 gap-5">
-      <div class="card-soft" data-anim data-anim-delay="0.05">
-        <div class="card-body">
-          <div class="flex items-center gap-3">
-            <span class="badge badge-info badge-outline">Maps</span>
-            <div class="font-medium">Offline χάρτης αγροτεμαχίων</div>
-          </div>
-          <p class="text-sm text-base-content/70">
-            Αναζήτηση/εντοπισμός στο πεδίο, ακόμα και χωρίς σήμα.
-          </p>
-        </div>
-      </div>
-
-      <div class="card-soft" data-anim data-anim-delay="0.1">
-        <div class="card-body">
-          <div class="flex items-center gap-3">
-            <span class="badge badge-warning badge-outline">Reports</span>
-            <div class="font-medium">Αναφορές & καταγραφές</div>
-          </div>
-          <p class="text-sm text-base-content/70">
-            Καταγραφή ποτισμάτων, συμβάντων και ενεργειών με timestamp.
-          </p>
-        </div>
-      </div>
-
-      <div class="card-soft" data-anim data-anim-delay="0.15">
-        <div class="card-body">
-          <div class="flex items-center gap-3">
-            <span class="badge badge-success badge-outline">Audit</span>
-            <div class="font-medium">Ιστορικό & διαφάνεια</div>
-          </div>
-          <p class="text-sm text-base-content/70">
-            Ποιος έκανε τι, πότε, και γιατί — χωρίς “γκρίζες ζώνες”.
-          </p>
-        </div>
-      </div>
+    <div class="mt-10 grid gap-4 lg:grid-cols-3">
+      {pillars.map((item, i) => (
+        <article class="card-soft p-6" data-anim data-anim-delay={String(0.06 * (i + 1))}>
+          <span class="badge-soft">{item.chip}</span>
+          <h3 class="mt-4 text-xl font-semibold text-slate-900">{item.title}</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-600">{item.body}</p>
+        </article>
+      ))}
     </div>
   </div>
 </section>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  kicker: string;
+  title: string;
+  description?: string;
+  center?: boolean;
+}
+
+const { kicker, title, description, center = false } = Astro.props;
+---
+
+<!-- Επαναχρησιμοποιήσιμο section header για ενιαία αισθητική -->
+<div class={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"} data-anim>
+  <span class="kicker">{kicker}</span>
+  <h2 class="mt-4 text-3xl font-semibold leading-tight text-slate-900 sm:text-4xl">{title}</h2>
+  {description && <p class="mt-4 text-base leading-7 text-slate-600 sm:text-lg">{description}</p>}
+</div>

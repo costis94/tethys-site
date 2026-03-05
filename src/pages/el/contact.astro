@@ -1,11 +1,154 @@
 ---
 import Layout from "../../components/Layout.astro";
+import PageIntro from "../../components/marketing/PageIntro.astro";
 ---
 
-<Layout title="Επικοινωνία — Tethys">
-  <a class="text-sm text-slate-600 hover:underline" href="/">← Πίσω</a>
-  <h1 class="mt-6 text-3xl font-semibold">Επικοινωνία</h1>
-  <p class="mt-3 text-slate-600">
-    Για demo ή πληροφορίες: <a class="underline" href="mailto:hello@tethys.gr">hello@tethys.gr</a>
-  </p>
+<Layout title="Επικοινωνία — Tethys" description="Επικοινωνήστε με την ομάδα Tethys για παρουσίαση και τεχνική ενημέρωση." lang="el">
+  <PageIntro
+    eyebrow="Επικοινωνία"
+    title="Στείλτε μας τα στοιχεία σας και θα επικοινωνήσουμε άμεσα"
+    description="Συμπληρώστε τη φόρμα για παρουσίαση ή τεχνική ενημέρωση. Η ομάδα μας απαντάει συνήθως εντός 1 εργάσιμης ημέρας."
+  />
+
+  <section class="container-page section-sm">
+    <div class="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+      <!-- Κύρια φόρμα επικοινωνίας -->
+      <article class="card-soft p-6 sm:p-7" data-anim>
+        <h2 class="text-xl font-semibold text-slate-900">Φόρμα επικοινωνίας</h2>
+        <p class="mt-2 text-sm text-slate-600">Τα πεδία με * είναι υποχρεωτικά.</p>
+
+        <form id="contact-form" class="mt-6 grid gap-4" novalidate>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid gap-1.5 text-sm">
+              <span class="font-medium text-slate-700">Ονοματεπώνυμο *</span>
+              <input name="fullName" type="text" required autocomplete="name" class="contact-input" placeholder="π.χ. Γιώργος Παπαδόπουλος" />
+            </label>
+
+            <label class="grid gap-1.5 text-sm">
+              <span class="font-medium text-slate-700">Email *</span>
+              <input name="email" type="email" required autocomplete="email" class="contact-input" placeholder="name@toev.gr" />
+            </label>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid gap-1.5 text-sm">
+              <span class="font-medium text-slate-700">Τηλέφωνο</span>
+              <input name="phone" type="tel" autocomplete="tel" class="contact-input" placeholder="π.χ. 69XXXXXXXX" />
+            </label>
+
+            <label class="grid gap-1.5 text-sm">
+              <span class="font-medium text-slate-700">Οργανισμός / ΤΟΕΒ *</span>
+              <input name="organization" type="text" required class="contact-input" placeholder="π.χ. ΤΟΕΒ Αργολίδας" />
+            </label>
+          </div>
+
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="grid gap-1.5 text-sm">
+              <span class="font-medium text-slate-700">Ρόλος</span>
+              <select name="role" class="contact-input">
+                <option value="">Επιλογή</option>
+                <option>Πρόεδρος / Διοίκηση</option>
+                <option>Γραμματεία / Διαχείριση</option>
+                <option>Υδρονομέας / Πεδίο</option>
+                <option>Τεχνικός συνεργάτης</option>
+              </select>
+            </label>
+
+            <label class="grid gap-1.5 text-sm">
+              <span class="font-medium text-slate-700">Τι σας ενδιαφέρει περισσότερο;</span>
+              <select name="interest" class="contact-input">
+                <option value="">Επιλογή</option>
+                <option>Demo πλατφόρμας</option>
+                <option>Πιλοτική εφαρμογή</option>
+                <option>Τεχνική ενημέρωση</option>
+                <option>Οικονομική προσφορά</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="grid gap-1.5 text-sm">
+            <span class="font-medium text-slate-700">Μήνυμα *</span>
+            <textarea name="message" required rows="5" class="contact-input min-h-[132px]" placeholder="Περιγράψτε σύντομα τις ανάγκες σας..."></textarea>
+          </label>
+
+          <label class="flex items-start gap-3 rounded-xl border border-slate-200 bg-slate-50/70 p-3 text-sm text-slate-600">
+            <input id="consent" name="consent" type="checkbox" required class="mt-0.5 h-4 w-4 rounded border-slate-300 text-sky-600 focus:ring-sky-500" />
+            <span>Συμφωνώ να χρησιμοποιηθούν τα στοιχεία μου αποκλειστικά για επικοινωνία σχετικά με το αίτημά μου.</span>
+          </label>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <button type="submit" class="btn-cta">Αποστολή αιτήματος</button>
+            <span id="contact-feedback" class="text-sm text-slate-600"></span>
+          </div>
+        </form>
+      </article>
+
+      <!-- Βοηθητικές πληροφορίες επικοινωνίας -->
+      <aside class="grid gap-4" data-anim data-anim-delay="0.06">
+        <article class="card-soft p-6">
+          <h3 class="text-lg font-semibold text-slate-900">Απευθείας επικοινωνία</h3>
+          <p class="mt-3 text-sm text-slate-600">Για άμεση επικοινωνία μπορείτε να στείλετε email:</p>
+          <a href="mailto:hello@tethys.gr" class="mt-3 inline-flex text-sm font-semibold text-sky-700 hover:text-sky-800">hello@tethys.gr</a>
+        </article>
+
+        <article class="card-soft p-6">
+          <h3 class="text-lg font-semibold text-slate-900">Τι να μας γράψετε</h3>
+          <ul class="mt-3 space-y-2 text-sm text-slate-600">
+            <li>• Μέγεθος και τύπο οργανισμού</li>
+            <li>• Ροές που θέλετε να ψηφιοποιήσετε πρώτες</li>
+            <li>• Αν χρειάζεστε demo ή πιλοτική φάση</li>
+          </ul>
+        </article>
+
+        <article class="panel p-4 text-sm text-slate-600">
+          Η φόρμα ανοίγει αυτόματα προσχέδιο email για ασφαλή αποστολή από τη συσκευή σας.
+        </article>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    // Δημιουργούμε mailto draft από τα πεδία της φόρμας (χωρίς backend dependency).
+    const form = document.getElementById("contact-form");
+    const feedback = document.getElementById("contact-feedback");
+
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const formEl = e.currentTarget;
+      if (!(formEl instanceof HTMLFormElement)) return;
+      if (!formEl.reportValidity()) return;
+
+      const data = new FormData(formEl);
+      const fullName = String(data.get("fullName") || "").trim();
+      const email = String(data.get("email") || "").trim();
+      const phone = String(data.get("phone") || "").trim();
+      const organization = String(data.get("organization") || "").trim();
+      const role = String(data.get("role") || "").trim();
+      const interest = String(data.get("interest") || "").trim();
+      const message = String(data.get("message") || "").trim();
+
+      const subject = encodeURIComponent(`Αίτημα επικοινωνίας Tethys - ${organization || fullName}`);
+      const body = encodeURIComponent(
+        [
+          `Ονοματεπώνυμο: ${fullName}`,
+          `Email: ${email}`,
+          `Τηλέφωνο: ${phone || "-"}`,
+          `Οργανισμός: ${organization}`,
+          `Ρόλος: ${role || "-"}`,
+          `Ενδιαφέρον: ${interest || "-"}`,
+          "",
+          "Μήνυμα:",
+          message,
+        ].join("\n"),
+      );
+
+      const href = `mailto:hello@tethys.gr?subject=${subject}&body=${body}`;
+      window.location.href = href;
+
+      if (feedback) {
+        feedback.textContent = "Ανοίγει η εφαρμογή email για αποστολή.";
+      }
+    });
+  </script>
 </Layout>

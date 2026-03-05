@@ -3,17 +3,12 @@ import Layout from "../../components/Layout.astro";
 ---
 
 <Layout title="404 — Tethys">
-  <div class="py-10">
-    <h1 class="text-3xl font-semibold">Δεν βρέθηκε η σελίδα</h1>
-    <p class="mt-3 text-slate-600">
-      Η σελίδα που ζητήσατε δεν υπάρχει ή έχει μετακινηθεί.
-    </p>
-
-    <a
-      class="mt-6 inline-flex rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white hover:bg-slate-800"
-      href="/"
-    >
-      Πίσω στην αρχική
-    </a>
-  </div>
+  <section class="container-page section">
+    <div class="mx-auto max-w-2xl card-soft p-8 text-center sm:p-10">
+      <span class="kicker">404</span>
+      <h1 class="mt-4 text-3xl font-semibold text-slate-900 sm:text-4xl">Δεν βρέθηκε η σελίδα</h1>
+      <p class="mt-4 text-slate-600">Η σελίδα που ζητήσατε δεν υπάρχει ή έχει μετακινηθεί.</p>
+      <a class="btn-cta mt-7" href="/el/">Πίσω στην αρχική</a>
+    </div>
+  </section>
 </Layout>

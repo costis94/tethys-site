@@ -21,20 +21,31 @@ import CTA from "../../components/home/CTA.astro";
   <WebAdmin />
   <CTA />
 
-  <!-- Motion One: simple reveal animations -->
+  <!-- Ελαφρύ animation με έμφαση στη σταθερότητα σε κινητό -->
   <script type="module">
     import { animate, inView } from "motion";
 
     const els = document.querySelectorAll("[data-anim]");
     els.forEach((el) => {
       const delay = Number(el.getAttribute("data-anim-delay") || "0");
-      inView(el, () => {
-        animate(
-          el,
-          { opacity: [0, 1], transform: ["translateY(10px)", "translateY(0px)"] },
-          { duration: 0.5, easing: "ease-out", delay }
-        );
-      }, { margin: "-10% 0px -10% 0px" });
+      inView(
+        el,
+        () => {
+          animate(
+            el,
+            {
+              opacity: [0, 1],
+              transform: ["translateY(14px)", "translateY(0px)"],
+            },
+            {
+              duration: 0.55,
+              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+              delay,
+            },
+          );
+        },
+        { margin: "-10% 0px -10% 0px" },
+      );
     });
   </script>
 </Layout>

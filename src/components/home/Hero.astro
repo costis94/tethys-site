@@ -1,88 +1,66 @@
-<section class="relative overflow-hidden">
-  <!-- Background -->
-  <div class="absolute inset-0">
-    <div class="bg-gradient-to-br from-base-200 via-base-100 to-base-100 h-full w-full"></div>
+---
+// KPI κάρτες πρώτης οθόνης
+const highlights = [
+  { title: "Offline πεδίο", desc: "Καταγραφή χωρίς σύνδεση και ασφαλές sync." },
+  { title: "Live Web εικόνα", desc: "Η διοίκηση βλέπει άμεσα τι έγινε στο πεδίο." },
+  { title: "Audit-ready", desc: "Πλήρες ιστορικό για διαφάνεια και λογοδοσία." },
+];
+---
+
+<section class="section relative overflow-hidden">
+  <!-- Ελαφρύ φόντο για premium αίσθηση χωρίς υπερβολή -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-sky-300/25 blur-3xl"></div>
+    <div class="absolute -right-20 top-8 h-72 w-72 rounded-full bg-cyan-200/30 blur-3xl"></div>
   </div>
 
-  <div class="relative container-page py-16 sm:py-24">
-    <div class="grid lg:grid-cols-2 gap-12 items-start">
-
-
-      <!-- Text -->
+  <div class="container-page">
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
       <div data-anim>
-        <div class="badge badge-primary badge-outline">
-          Offline-first για ΤΟΕΒ
-        </div>
+        <span class="kicker">Digital Operations Platform</span>
 
-        <h1 class="mt-4 text-4xl sm:text-5xl font-semibold tracking-tight leading-tight">
-          Ψηφιακή διαχείριση άρδευσης
-          <span class="text-base-content/60">
-            με Android στο πεδίο & Web στο γραφείο.
-          </span>
+        <h1 class="mt-5 text-4xl font-semibold leading-[1.05] text-slate-900 sm:text-5xl lg:text-6xl">
+          Διαχείριση άρδευσης
+          <span class="block text-slate-500">με ακρίβεια, ταχύτητα και έλεγχο.</span>
         </h1>
 
-        <p class="mt-6 text-lg text-base-content/70 max-w-xl">
-          Το Android είναι το εργαλείο του πεδίου:
-          ποτίσματα, αντλιοστάσια, αναφορές.
-          Το Web είναι το κέντρο ελέγχου:
-          διαχείριση, ρόλοι, ιστορικό, διαφάνεια.
+        <p class="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
+          Το Tethys συνδέει Android πεδίου και Web διοίκησης σε ένα ενιαίο σύστημα.
+          Οι άνθρωποι στο πεδίο δουλεύουν γρήγορα και το γραφείο έχει καθαρή, άμεση εικόνα.
         </p>
 
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="/el/contact" class="btn btn-primary">
-            Ζητήστε παρουσίαση
-          </a>
-          <a href="/el/product" class="btn btn-outline">
-            Δείτε το προϊόν
-          </a>
+          <a href="/el/contact" class="btn-cta">Ζητήστε παρουσίαση</a>
+          <a href="/el/product" class="btn-ghosty">Δείτε το προϊόν</a>
+          <a href="/assets/apk/tethys-app.apk" download class="btn-ghosty">Λήψη APK</a>
         </div>
 
-        <div class="mt-8 flex flex-wrap gap-3 text-sm text-base-content/60">
-          <div class="badge badge-success badge-outline">Offline λειτουργία</div>
-          <div class="badge badge-info badge-outline">Χάρτες</div>
-          <div class="badge badge-warning badge-outline">Καταγραφή</div>
-          <div class="badge badge-error badge-outline">Αναφορές</div>
+        <div class="mt-8 grid gap-3 sm:grid-cols-3">
+          {highlights.map((item, i) => (
+            <article class="card-soft p-4" data-anim data-anim-delay={String(0.05 * (i + 1))}>
+              <h3 class="text-sm font-semibold text-slate-900">{item.title}</h3>
+              <p class="mt-1 text-xs leading-5 text-slate-600">{item.desc}</p>
+            </article>
+          ))}
         </div>
       </div>
 
-      <!-- Phone -->
-     <div class="flex items-start justify-center lg:justify-end lg:pt-4"
-     data-anim data-anim-delay="0.1">
-
-
-        <div class="relative">
-
-          <!-- Glow -->
-          <div class="absolute -inset-10 bg-primary/10 blur-3xl rounded-[3rem]"></div>
-
-          <!-- Scaled wrapper -->
-          <div class="relative scale-[0.75] sm:scale-[0.9] lg:scale-60 origin-top">
-
-            <div class="w-[380px]">
-              <div class="mockup-phone border-[#ff8938] shadow-2xl">
-                <div class="mockup-phone-camera"></div>
-                <div class="mockup-phone-display">
-                  <img
-                    src="/app-screenshot.png"
-                    alt="Tethys Android App"
-                    class="w-full"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <!-- Shadow κάτω -->
-            <div class="absolute left-1/2 -bottom-12 -translate-x-1/2
-                        h-12 w-72
-                        bg-black/25 blur-3xl rounded-full">
-            </div>
-
-          </div>
-
+      <div class="mx-auto w-full max-w-[440px]" data-anim data-anim-delay="0.08">
+        <!-- Ρεαλιστικό phone mockup με notch και σκιά βάσης -->
+        <div class="phone-stage">
+          <div class="phone-glow"></div>
+          <figure class="phone-shell">
+            <div class="phone-notch"></div>
+            <img
+              src="/app-screenshot.png"
+              alt="Εφαρμογή Tethys Android"
+              class="phone-screen"
+              loading="eager"
+            />
+          </figure>
+          <div class="phone-shadow"></div>
         </div>
-
       </div>
-
     </div>
   </div>
 </section>
