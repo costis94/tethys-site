@@ -1,4 +1,4 @@
----
+﻿---
 import Layout from "../../components/Layout.astro";
 import PageIntro from "../../components/marketing/PageIntro.astro";
 import CTA from "../../components/home/CTA.astro";
@@ -136,11 +136,20 @@ const webMindmapRight = webModulesGrouped.filter((_, i) => i % 2 === 1);
   description="Πλήρης πλατφόρμα για ΤΟΕΒ: Android εκτός σύνδεσης για το πεδίο και ολοκληρωμένο Web σύστημα για τη διοίκηση."
   lang="el"
 >
+  <div class="product-page">
+    <div id="product-scroll-progress" class="product-scroll-progress" aria-hidden="true"></div>
+    <div class="product-hero" data-product-hero>
+      <div class="product-hero-bg" aria-hidden="true">
+        <div id="product-blob-1" class="product-blob product-blob-left"></div>
+        <div id="product-blob-2" class="product-blob product-blob-right"></div>
+      </div>
+
   <PageIntro
-    eyebrow="Προϊόν"
     title="Πλήρης πλατφόρμα για κάθε πτυχή λειτουργίας ενός ΤΟΕΒ"
     description="Android για τον υδρονόμο στο πεδίο. Web για τη διοίκηση, τα οικονομικά και τις υποθέσεις. Ένα σύστημα, μία κοινή βάση δεδομένων."
   />
+
+    </div>
 
   <!-- Android Section -->
   <section class="container-page section-sm">
@@ -262,6 +271,7 @@ const webMindmapRight = webModulesGrouped.filter((_, i) => i % 2 === 1);
 
   <PlatformArchitecture />
   <CTA />
+  </div>
 </Layout>
 
 <style>
@@ -423,4 +433,215 @@ const webMindmapRight = webModulesGrouped.filter((_, i) => i % 2 === 1);
       left: -14px;
     }
   }
+
+  .product-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 70;
+    width: 100%;
+    height: 3px;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: linear-gradient(90deg, #00366b, #00509e, #0076c7);
+    box-shadow: 0 0 12px rgba(0, 80, 158, 0.35);
+    pointer-events: none;
+  }
+
+  .product-hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-hero-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .product-blob {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(52px);
+    opacity: 0.9;
+    will-change: transform;
+  }
+
+  .product-blob-left {
+    left: -4rem;
+    top: -1.5rem;
+    width: 17rem;
+    height: 17rem;
+    background: rgba(0, 54, 107, 0.14);
+  }
+
+  .product-blob-right {
+    right: -3rem;
+    top: 2rem;
+    width: 19rem;
+    height: 19rem;
+    background: rgba(0, 80, 158, 0.12);
+  }
+
+  .product-hero :global(section) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .product-hero :global(h1) {
+    font-family: "Fraunces", Georgia, serif;
+    font-optical-sizing: auto;
+    font-variation-settings: "opsz" 72;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+  }
+
+  .product-title-cursor {
+    margin-left: 2px;
+    color: #00366b;
+    font-weight: 300;
+    animation: product-title-cursor-blink 1.05s step-end infinite;
+  }
+
+  .product-title-muted {
+    color: #64748b;
+  }
+
+  :global(.product-page .btn-cta-white) {
+    position: relative;
+    overflow: hidden;
+  }
+
+  :global(.product-page .btn-cta-white::before) {
+    content: "";
+    position: absolute;
+    top: -140%;
+    left: -44%;
+    width: 24%;
+    height: 380%;
+    transform: rotate(20deg);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(0, 118, 199, 0.2) 40%,
+      rgba(255, 255, 255, 0.72) 52%,
+      rgba(0, 118, 199, 0.2) 64%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: product-cta-shimmer 3.1s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes product-title-cursor-blink {
+    0%,
+    100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes product-cta-shimmer {
+    0%,
+    18% {
+      left: -44%;
+      opacity: 0;
+    }
+    26% {
+      opacity: 1;
+    }
+    46% {
+      left: 132%;
+      opacity: 0;
+    }
+    100% {
+      left: 132%;
+      opacity: 0;
+    }
+  }
 </style>
+
+<script is:inline>
+  (function () {
+    var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    var progressEl = document.getElementById("product-scroll-progress");
+    function updateProgress() {
+      if (!progressEl) return;
+      var top = window.scrollY || document.documentElement.scrollTop || 0;
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      var ratio = max > 0 ? Math.min(1, Math.max(0, top / max)) : 0;
+      progressEl.style.transform = "scaleX(" + ratio + ")";
+    }
+
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+
+    if (prefersReducedMotion) return;
+
+    var blob1 = document.getElementById("product-blob-1");
+    var blob2 = document.getElementById("product-blob-2");
+    if (blob1 && blob2) {
+      var ticking = false;
+      function paintParallax() {
+        var y = window.scrollY || 0;
+        blob1.style.transform = "translate3d(0," + y * 0.13 + "px,0)";
+        blob2.style.transform = "translate3d(" + y * 0.05 + "px," + y * -0.1 + "px,0)";
+        ticking = false;
+      }
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(paintParallax);
+      }
+      paintParallax();
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    var hero = document.querySelector("[data-product-hero]");
+    var heroTitle = hero ? hero.querySelector("h1") : null;
+    if (!heroTitle) return;
+
+    var headingText = (heroTitle.textContent || "").replace(/\s+/g, " ").trim();
+    if (!headingText) return;
+
+    heroTitle.innerHTML = '<span id="product-title-typed-text"></span><span class="product-title-cursor" aria-hidden="true">|</span>';
+    var target = document.getElementById("product-title-typed-text");
+    if (!target) return;
+
+    var suffix = "ενός ΤΟΕΒ";
+    var splitAt = headingText.lastIndexOf(suffix);
+
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    var charIdx = 0;
+    function tickHeadingOnce() {
+      charIdx += 1;
+      if (splitAt > -1 && charIdx > splitAt) {
+        var prefixText = headingText.slice(0, splitAt);
+        var suffixText = headingText.slice(splitAt, charIdx);
+        target.innerHTML = escapeHtml(prefixText) + '<span class="product-title-muted">' + escapeHtml(suffixText) + "</span>";
+      } else {
+        target.textContent = headingText.slice(0, charIdx);
+      }
+      if (charIdx < headingText.length) {
+        setTimeout(tickHeadingOnce, 46);
+        return;
+      }
+      var cursor = heroTitle.querySelector(".product-title-cursor");
+      if (cursor) {
+        cursor.style.animation = "none";
+        cursor.style.opacity = "1";
+      }
+    }
+
+    tickHeadingOnce();
+  })();
+</script>
+
+
