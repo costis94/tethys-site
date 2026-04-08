@@ -2,26 +2,29 @@
 import Layout from "../../components/Layout.astro";
 
 import Hero from "../../components/home/Hero.astro";
+import Marquee from "../../components/home/Marquee.astro";
 import Problem from "../../components/home/Problem.astro";
 import Features from "../../components/home/Features.astro";
 import OfflineField from "../../components/home/OfflineField.astro";
 import WebAdmin from "../../components/home/WebAdmin.astro";
+import FAQ from "../../components/home/FAQ.astro";
 import CTA from "../../components/home/CTA.astro";
 ---
 
 <Layout
-  title="Tethys — Ψηφιακή διαχείριση άρδευσης (Offline-first)"
-  description="Offline-first πλατφόρμα για ΤΟΕΒ: Android εφαρμογή για καταγραφές στο πεδίο + Web διαχείριση για πλήρη έλεγχο."
+  title="Tethys — Ψηφιακή διαχείριση άρδευσης (Εκτός σύνδεσης)"
+  description="Πλατφόρμα εκτός σύνδεσης για ΤΟΕΒ: Android εφαρμογή για καταγραφές στο πεδίο + Web διαχείριση για πλήρη έλεγχο."
   lang="el"
 >
   <Hero />
+  <Marquee />
   <Problem />
   <Features />
   <OfflineField />
   <WebAdmin />
+  <FAQ />
   <CTA />
 
-  <!-- Ελαφρύ animation με έμφαση στη σταθερότητα σε κινητό -->
   <script type="module">
     import { animate, inView } from "motion";
 

@@ -1,11 +1,46 @@
-<footer class="section-sm section-border mt-10 relative z-10">
-  <div class="container-page flex flex-col gap-3 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-    <!-- Σταθερή ταυτότητα brand + χρονιά -->
-    <p>© {new Date().getFullYear()} Tethys. Όλα τα δικαιώματα διατηρούνται.</p>
+<footer class="section-border bg-white">
+  <div class="container-page py-12 sm:py-14">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
 
-    <div class="flex items-center gap-4">
-      <a class="hover:text-slate-900 transition" href="/el/legal/privacy">Πολιτική απορρήτου</a>
-      <a class="hover:text-slate-900 transition" href="/el/contact">Επικοινωνία</a>
+      <!-- Brand -->
+      <div class="sm:col-span-2 lg:col-span-2">
+        <a href="/el/" class="flex items-center gap-3">
+          <img src="/brand/logo.svg" alt="Tethys" class="h-9 w-auto rounded-lg" />
+          <span class="text-base font-semibold tracking-tight text-slate-900">Tethys</span>
+        </a>
+        <p class="mt-4 max-w-xs text-sm leading-6 text-slate-500">
+          Ψηφιακή πλατφόρμα για ΤΟΕΒ — Android για τον υδρονόμο στο πεδίο, Web για πλήρη διαχείριση από το γραφείο.
+        </p>
+        <a href="mailto:hello@tethys.systems" class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition hover:text-slate-900">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          hello@tethys.systems
+        </a>
+      </div>
+
+      <!-- Πλατφόρμα -->
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">Πλατφόρμα</h4>
+        <ul class="mt-4 space-y-2.5">
+          <li><a href="/el/" class="text-sm text-slate-600 transition hover:text-slate-900">Αρχική</a></li>
+          <li><a href="/el/product" class="text-sm text-slate-600 transition hover:text-slate-900">Προϊόν</a></li>
+          <li><a href="/el/security" class="text-sm text-slate-600 transition hover:text-slate-900">Ασφάλεια</a></li>
+          <li><a href="/el/contact" class="text-sm text-slate-600 transition hover:text-slate-900">Επικοινωνία</a></li>
+        </ul>
+      </div>
+
+      <!-- Νομικά -->
+      <div>
+        <h4 class="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">Νομικά</h4>
+        <ul class="mt-4 space-y-2.5">
+          <li><a href="/el/legal/privacy" class="text-sm text-slate-600 transition hover:text-slate-900">Πολιτική Απορρήτου</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-10 flex flex-col gap-3 border-t border-slate-100 pt-6 sm:flex-row sm:items-center sm:justify-between">
+      <p class="text-xs text-slate-400">© {new Date().getFullYear()} Tethys. Όλα τα δικαιώματα διατηρούνται.</p>
+      <p class="text-xs text-slate-400">Κατασκευή για ΤΟΕΒ στην Ελλάδα.</p>
     </div>
   </div>
 </footer>

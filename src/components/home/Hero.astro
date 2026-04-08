@@ -1,38 +1,37 @@
 ---
-// KPI κάρτες πρώτης οθόνης
 const highlights = [
-  { title: "Offline πεδίο", desc: "Καταγραφή χωρίς σύνδεση και ασφαλές sync." },
-  { title: "Live Web εικόνα", desc: "Η διοίκηση βλέπει άμεσα τι έγινε στο πεδίο." },
-  { title: "Audit-ready", desc: "Πλήρες ιστορικό για διαφάνεια και λογοδοσία." },
+  { title: "Android εκτός σύνδεσης", desc: "Καταγραφές και αναφορές ακόμα και χωρίς δίκτυο." },
+  { title: "Πλήρες οικονομικό", desc: "Τιμολόγηση, λογαριασμοί μελών και εισπράξεις σε ένα σύστημα." },
+  { title: "Πλήρης ελεγξιμότητα", desc: "Κάθε ενέργεια τεκμηριωμένη με χρονική σήμανση." },
 ];
 ---
 
 <section class="section relative overflow-hidden">
-  <!-- Ελαφρύ φόντο για premium αίσθηση χωρίς υπερβολή -->
   <div class="pointer-events-none absolute inset-0 -z-10">
-    <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-sky-300/25 blur-3xl"></div>
-    <div class="absolute -right-20 top-8 h-72 w-72 rounded-full bg-cyan-200/30 blur-3xl"></div>
+    <div id="hero-blob-1" class="absolute -left-24 -top-24 h-72 w-72 rounded-full blur-3xl" style="background: rgba(0,54,107,0.12);"></div>
+    <div id="hero-blob-2" class="absolute -right-20 top-8 h-80 w-80 rounded-full blur-3xl" style="background: rgba(0,80,158,0.09);"></div>
   </div>
 
   <div class="container-page">
     <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
       <div data-anim>
-        <span class="kicker">Digital Operations Platform</span>
+        <span class="kicker">Ψηφιακή Πλατφόρμα για ΤΟΕΒ</span>
 
-        <h1 class="mt-5 text-4xl font-semibold leading-[1.05] text-slate-900 sm:text-5xl lg:text-6xl">
-          Διαχείριση άρδευσης
-          <span class="block text-slate-500">με ακρίβεια, ταχύτητα και έλεγχο.</span>
+        <h1 class="hero-title mt-5 text-slate-900">
+          Ένα σύστημα.
+          <span class="block text-slate-500">
+            <span id="hero-typed-text">Πεδίο και γραφείο ενωμένα.</span><span id="hero-cursor" class="typed-cursor">|</span>
+          </span>
         </h1>
 
         <p class="mt-6 max-w-xl text-base leading-7 text-slate-600 sm:text-lg">
-          Το Tethys συνδέει Android πεδίου και Web διοίκησης σε ένα ενιαίο σύστημα.
-          Οι άνθρωποι στο πεδίο δουλεύουν γρήγορα και το γραφείο έχει καθαρή, άμεση εικόνα.
+          Το Tethys δίνει στον υδρονόμο ένα ισχυρό εργαλείο Android για το πεδίο
+          και στη διοίκηση μια πλήρη web πλατφόρμα — με άμεσο συγχρονισμό μεταξύ τους.
         </p>
 
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="/el/contact" class="btn-cta">Ζητήστε παρουσίαση</a>
           <a href="/el/product" class="btn-ghosty">Δείτε το προϊόν</a>
-          <a href="/assets/apk/tethys-app.apk" download class="btn-ghosty">Λήψη APK</a>
         </div>
 
         <div class="mt-8 grid gap-3 sm:grid-cols-3">
@@ -46,17 +45,11 @@ const highlights = [
       </div>
 
       <div class="mx-auto w-full max-w-[440px]" data-anim data-anim-delay="0.08">
-        <!-- Ρεαλιστικό phone mockup με notch και σκιά βάσης -->
         <div class="phone-stage">
           <div class="phone-glow"></div>
           <figure class="phone-shell">
             <div class="phone-notch"></div>
-            <img
-              src="/app-screenshot.png"
-              alt="Εφαρμογή Tethys Android"
-              class="phone-screen"
-              loading="eager"
-            />
+            <img src="/app-screenshot.png" alt="Εφαρμογή Tethys Android" class="phone-screen" loading="eager" />
           </figure>
           <div class="phone-shadow"></div>
         </div>
@@ -64,3 +57,77 @@ const highlights = [
     </div>
   </div>
 </section>
+
+<style>
+  .typed-cursor {
+    display: inline-block;
+    color: #00366b;
+    font-weight: 300;
+    animation: blink 1.1s step-end infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+</style>
+
+<script is:inline>
+  /* --- Parallax blobs --- */
+  (function () {
+    var blob1 = document.getElementById("hero-blob-1");
+    var blob2 = document.getElementById("hero-blob-2");
+    if (!blob1 || !blob2) return;
+    window.addEventListener("scroll", function () {
+      var y = window.scrollY;
+      blob1.style.transform = "translateY(" + y * 0.18 + "px)";
+      blob2.style.transform = "translateY(" + y * -0.12 + "px) translateX(" + y * 0.04 + "px)";
+    }, { passive: true });
+  })();
+
+  /* --- Typewriter --- */
+  (function () {
+    var el = document.getElementById("hero-typed-text");
+    if (!el) return;
+
+    var phrases = [
+      "Πεδίο και γραφείο ενωμένα.",
+      "Καταγραφές χωρίς χαρτιά.",
+      "Οικονομικά υπό έλεγχο.",
+      "Αντλιοστάσια σε πραγματικό χρόνο.",
+      "Ενστάσεις και πρωτόκολλα ψηφιακά.",
+    ];
+
+    var phraseIdx = 0;
+    var charIdx   = phrases[0].length; // ξεκινά ήδη τυπωμένο
+    var deleting  = false;
+
+    function tick() {
+      var current = phrases[phraseIdx];
+
+      if (deleting) {
+        charIdx--;
+        el.textContent = current.slice(0, charIdx);
+        if (charIdx === 0) {
+          deleting  = false;
+          phraseIdx = (phraseIdx + 1) % phrases.length;
+          setTimeout(tick, 380);
+          return;
+        }
+        setTimeout(tick, 38);
+      } else {
+        charIdx++;
+        el.textContent = current.slice(0, charIdx);
+        if (charIdx === current.length) {
+          setTimeout(function () { deleting = true; tick(); }, 2400);
+          return;
+        }
+        setTimeout(tick, 72);
+      }
+    }
+
+    // Ξεκινά μετά από 2.8s ώστε να διαβαστεί πρώτα η αρχική φράση
+    setTimeout(function () { deleting = true; tick(); }, 2800);
+  })();
+</script>

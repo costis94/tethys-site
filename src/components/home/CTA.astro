@@ -1,21 +1,101 @@
 ---
-import SectionIntro from "./ui/SectionIntro.astro";
 ---
 
 <section class="section section-border">
   <div class="container-page">
-    <div class="card-soft px-6 py-10 sm:px-10 sm:py-12" data-anim>
-      <SectionIntro
-        kicker="Επόμενο βήμα"
-        title="Να σου δείξουμε το Tethys με τα δικά σας πραγματικά σενάρια;"
-        description="Κάνουμε σύντομο walkthrough στη ροή σας και δείχνουμε πώς η πλατφόρμα μειώνει θόρυβο, λάθη και καθυστερήσεις."
-        center={true}
-      />
+    <div class="cta-dark rounded-3xl px-8 py-14 text-center sm:px-12 sm:py-16" data-anim>
+
+      <span class="cta-kicker">Επόμενο βήμα</span>
+
+      <h2 class="mt-5 text-3xl font-semibold leading-tight text-white sm:text-4xl">
+        Να σας δείξουμε το Tethys<br class="hidden sm:block" />
+        με τα δικά σας πραγματικά σενάρια;
+      </h2>
+
+      <p class="mx-auto mt-4 max-w-xl text-base leading-7 text-blue-100/80">
+        Κάνουμε σύντομη επίδειξη στη ροή σας και δείχνουμε πώς η πλατφόρμα
+        μειώνει θόρυβο, λάθη και καθυστερήσεις.
+      </p>
 
       <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="/el/contact" class="btn-cta">Κλείστε παρουσίαση</a>
-        <a href="/el/product" class="btn-ghosty">Δείτε το προϊόν</a>
+        <a href="/el/contact" class="btn-cta-white">
+          Κλείστε παρουσίαση
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="/el/product" class="btn-cta-ghost">Δείτε το προϊόν</a>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  .cta-dark {
+    background: linear-gradient(135deg, #00244d 0%, #00366b 60%, #004d96 100%);
+    box-shadow: 0 24px 60px rgba(0, 36, 77, 0.35);
+  }
+
+  .cta-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .cta-kicker::before {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #7dd3fc;
+    flex-shrink: 0;
+  }
+
+  .btn-cta-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.75rem;
+    border-radius: 0.75rem;
+    border: none;
+    padding: 0 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: #ffffff;
+    color: #00366b;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .btn-cta-white:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.25);
+  }
+
+  .btn-cta-ghost {
+    display: inline-flex;
+    align-items: center;
+    height: 2.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 0 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.9);
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .btn-cta-ghost:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+</style>

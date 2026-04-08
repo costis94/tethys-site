@@ -1,47 +1,162 @@
 ---
 import SectionIntro from "./ui/SectionIntro.astro";
 
-// Βήματα λειτουργίας mobile app στο πεδίο
 const flow = [
-  "Εντοπισμός αγροτεμαχίου στον χάρτη",
-  "Γρήγορη καταγραφή ποτίσματος ή συμβάντος",
-  "Αποθήκευση offline με ασφάλεια",
-  "Sync στο Web μόλις αποκατασταθεί σύνδεση",
+  "Άνοιγμα offline χάρτη με όλα τα αγροτεμάχια του ΤΟΕΒ",
+  "Επιλογή αγροτεμαχίου και καταγραφή ποτίσματος με επιλογή καλλιέργειας",
+  "Δημιουργία αναφοράς (παράβαση, συμβάν, ενημέρωση) με GPS και φωτογραφίες",
+  "Αποθήκευση τοπικά — τα δεδομένα δεν χάνονται ακόμα και αν κλείσει το app",
+  "Αυτόματος συγχρονισμός στο background μόλις αποκατασταθεί σύνδεση",
+];
+
+const androidFeatures = [
+  { label: "Offline χάρτης", desc: "MapLibre με πλήρες bundle αγροτεμαχίων και δικτύου — λειτουργεί χωρίς internet." },
+  { label: "Καταγραφή αρδεύσεων", desc: "Επιλογή καλλιέργειας, ποικιλίας, πυκνότητας και κατάστασης ποτίσματος με GPS." },
+  { label: "Αναφορές πεδίου", desc: "Παραβάσεις, συμβάντα ή ενημερώσεις με έως 5 φωτογραφίες και ακριβή θέση GPS." },
+  { label: "Background sync", desc: "Το WorkManager εξασφαλίζει ότι τα δεδομένα ανεβαίνουν αυτόματα — χωρίς χειροκίνητη παρέμβαση." },
+  { label: "Push notifications", desc: "Ειδοποιήσεις για νέες αναφορές, ενημερώσεις και κατάσταση συγχρονισμού." },
+  { label: "Dashboard & sync status", desc: "Άμεση εικόνα ημερήσιων καταγραφών και κατάστασης σύνδεσης από την πρώτη οθόνη." },
 ];
 ---
 
 <section class="section section-border">
   <div class="container-page">
-    <div class="grid gap-8 lg:grid-cols-2 lg:items-start">
-      <div>
-        <SectionIntro
-          kicker="Android στο πεδίο"
-          title="Σχεδιασμένο για πραγματική εργασία, όχι για demo περιβάλλον."
-          description="Η εμπειρία χρήσης παραμένει απλή και σταθερή σε δύσκολες συνθήκες δικτύου."
-        />
+    <SectionIntro
+      kicker="Tethys Android"
+      title="Το εργαλείο του υδρονόμου — σχεδιασμένο για το πεδίο."
+      description="Λειτουργεί πλήρως εκτός σύνδεσης. Καταγραφές, αναφορές και χάρτης διαθέσιμα οποτεδήποτε, οπουδήποτε."
+    />
 
-        <ul class="mt-6 space-y-3">
+    <div class="mt-10 grid gap-8 lg:grid-cols-2 lg:items-start">
+
+      <!-- Flow βημάτων με scroll-activated numbers -->
+      <div>
+        <h3 class="mb-5 text-sm font-semibold uppercase tracking-widest text-slate-400">Τυπική ροή εργασίας στο πεδίο</h3>
+        <ul class="flow-list">
           {flow.map((step, i) => (
-            <li class="panel flex gap-3 px-4 py-3 text-sm leading-6 text-slate-700" data-anim data-anim-delay={String(0.04 * (i + 1))}>
-              <span class="badge-soft shrink-0">{i + 1}</span>
-              <span>{step}</span>
+            <li class="flow-item" data-flow-item>
+              <div class="flow-number">
+                <span>{i + 1}</span>
+              </div>
+              <div class="flow-connector" />
+              <p class="flow-text">{step}</p>
             </li>
           ))}
         </ul>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href="/el/contact" class="btn-cta">Ζητήστε παρουσίαση</a>
+        </div>
       </div>
 
-      <article class="card-soft p-6" data-anim data-anim-delay="0.08">
-        <h3 class="text-xl font-semibold text-slate-900">Επιχειρησιακό αποτέλεσμα</h3>
-        <div class="mt-4 space-y-3">
-          <p class="panel p-4 text-sm text-slate-600">Μικρότερος χρόνος από συμβάν σε απόφαση.</p>
-          <p class="panel p-4 text-sm text-slate-600">Συνεπείς καταγραφές με ελάχιστο διοικητικό φόρτο.</p>
-          <p class="panel p-4 text-sm text-slate-600">Συνεχής ενημέρωση γραφείου χωρίς χειροκίνητη μεταφορά.</p>
-        </div>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="/el/contact" class="btn-cta">Ζητήστε demo</a>
-          <a href="/el/product" class="btn-ghosty">Μάθετε περισσότερα</a>
-        </div>
-      </article>
+      <!-- Features grid -->
+      <div class="grid gap-3 sm:grid-cols-2">
+        {androidFeatures.map((f, i) => (
+          <article class="card-soft p-5" data-anim data-anim-delay={String(0.05 * (i + 1))}>
+            <h4 class="text-sm font-semibold text-slate-900">{f.label}</h4>
+            <p class="mt-1.5 text-xs leading-5 text-slate-500">{f.desc}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .flow-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+
+  .flow-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    position: relative;
+    padding-bottom: 1.75rem;
+  }
+
+  .flow-item:last-child {
+    padding-bottom: 0;
+  }
+
+  /* Κάθετη γραμμή που συνδέει τα βήματα */
+  .flow-item:not(:last-child)::before {
+    content: "";
+    position: absolute;
+    left: 19px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background: var(--tethys-line);
+    transition: background 0.4s;
+  }
+
+  .flow-item.is-active:not(:last-child)::before {
+    background: color-mix(in srgb, var(--tethys-accent) 30%, white);
+  }
+
+  /* Ο κύκλος με τον αριθμό */
+  .flow-number {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--tethys-line);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #94a3b8;
+    transition: border-color 0.35s, color 0.35s, background 0.35s, box-shadow 0.35s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow-item.is-active .flow-number {
+    border-color: var(--tethys-accent);
+    color: var(--tethys-accent);
+    background: color-mix(in srgb, var(--tethys-accent) 8%, white);
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--tethys-accent) 10%, transparent);
+  }
+
+  .flow-connector {
+    display: none;
+  }
+
+  .flow-text {
+    padding-top: 0.55rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #64748b;
+    transition: color 0.3s;
+  }
+
+  .flow-item.is-active .flow-text {
+    color: #0d1b2a;
+    font-weight: 500;
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll("[data-flow-item]");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-active");
+        }
+      });
+    },
+    {
+      threshold: 0.6,
+      rootMargin: "0px 0px -10% 0px",
+    }
+  );
+
+  items.forEach((item) => observer.observe(item));
+</script>

@@ -1,32 +1,61 @@
 ---
 import SectionIntro from "./ui/SectionIntro.astro";
 
-// Δυνατότητες διοίκησης για το web περιβάλλον
-const points = [
-  "Πλήρης εποπτεία χρήσεων, καταγραφών και εκκρεμοτήτων",
-  "Ρόλοι και δικαιώματα με καθαρό governance model",
-  "Ενιαίο ιστορικό ενεργειών για audit και διαφάνεια",
-  "Εξαγωγές/αναφορές για τεκμηριωμένες αποφάσεις",
+const categories = [
+  {
+    label: "Μητρώα & Αρδεύσεις",
+    points: [
+      "Αγροτεμάχια (ΚΑΕΚ) με γεω-δεδομένα, ιστορικό και απογραφή δέντρων",
+      "Μητρώο μελών με εισαγωγή CSV και συγχώνευση διπλοεγγραφών",
+      "Ιστορικό αρδεύσεων ανά αγροτεμάχιο, σεζόν και καλλιέργεια",
+    ],
+  },
+  {
+    label: "Οικονομική Διαχείριση",
+    points: [
+      "Τιμολόγηση μελών, λογαριασμός ανά μέλος και εισπράξεις ΔΟΥ",
+      "Κατηγοριοποιημένα έξοδα, προμηθευτές και παρακολούθηση πληρωμών",
+      "Αναλυτικές χρηματοοικονομικές αναφορές και εξαγωγές PDF",
+    ],
+  },
+  {
+    label: "Υποθέσεις & Έλεγχος",
+    points: [
+      "Υποθέσεις πολλαπλών σταδίων με διαχείριση εγγράφων",
+      "Πρωτόκολλα με αυτόματη αρίθμηση και διαχείριση ενστάσεων",
+      "Πλήρες audit log — κάθε ενέργεια καταγεγραμμένη με χρονική σήμανση",
+    ],
+  },
 ];
 ---
 
 <section class="section section-border">
   <div class="container-page">
-    <div class="grid gap-8 lg:grid-cols-2 lg:items-start">
-      <SectionIntro
-        kicker="Web πλατφόρμα"
-        title="Η διοίκηση αποκτά καθαρό έλεγχο της λειτουργίας σε ένα dashboard."
-        description="Ολες οι κρίσιμες πληροφορίες συγκεντρώνονται με κοινή γλώσσα μεταξύ γραφείου και πεδίου."
-      />
+    <SectionIntro
+      kicker="Web Πλατφόρμα"
+      title="Πλήρης έλεγχος της λειτουργίας από ένα περιβάλλον."
+      description="Έξι ρόλοι χρηστών, εξαγωγές σε PDF/CSV/Word και διαδραστικός χάρτης GIS — όλα ενσωματωμένα."
+    />
 
-      <div class="space-y-3" data-anim data-anim-delay="0.08">
-        {points.map((point, i) => (
-          <article class="panel flex items-start gap-3 p-4 text-sm leading-6 text-slate-700" data-anim data-anim-delay={String(0.03 * (i + 1))}>
-            <span class="mt-2 h-2.5 w-2.5 shrink-0 rounded-full bg-sky-600"></span>
-            <span>{point}</span>
-          </article>
-        ))}
-      </div>
+    <div class="mt-10 grid gap-6 lg:grid-cols-3">
+      {categories.map((cat, ci) => (
+        <article class="card-soft p-6" data-anim data-anim-delay={String(0.06 * (ci + 1))}>
+          <h3 class="text-base font-semibold text-slate-900">{cat.label}</h3>
+          <ul class="mt-4 space-y-3">
+            {cat.points.map((point) => (
+              <li class="flex items-start gap-2.5 text-sm leading-6 text-slate-600">
+                <span class="mt-2 h-2 w-2 shrink-0 rounded-full bg-sky-600"></span>
+                <span>{point}</span>
+              </li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-6 flex flex-wrap justify-center gap-3" data-anim>
+      <a href="/el/product" class="btn-cta">Δείτε όλες τις δυνατότητες</a>
+      <a href="/el/contact" class="btn-ghosty">Ζητήστε παρουσίαση</a>
     </div>
   </div>
 </section>

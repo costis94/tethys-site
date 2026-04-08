@@ -12,7 +12,7 @@ type Props = {
 
 const {
   title = "Tethys",
-  description = "Offline-first πλατφόρμα για διαχείριση άρδευσης.",
+  description = "Πλατφόρμα εκτός σύνδεσης για διαχείριση άρδευσης.",
   lang = "el",
   canonicalPath,
 } = Astro.props;
@@ -37,6 +37,7 @@ const enHref = `https://www.tethys.systems${pathname.startsWith("/el") ? pathnam
     <link rel="alternate" hreflang="en" href={enHref} />
     <link rel="alternate" hreflang="x-default" href={elHref} />
 
+    <link rel="icon" type="image/svg+xml" href="/brand/logo.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
