@@ -83,6 +83,29 @@ const webModules = [
     body: "Πλήρες ιστορικό ενεργειών χρηστών με χρονική σήμανση. Έξι ρόλοι (Υδρονόμος, Λογιστής, Admin κ.α.) με διακριτά δικαιώματα.",
   },
 ];
+
+const webSectionOrder = ["ΜΗΤΡΩΟ", "ΠΕΔΙΟ", "ΟΙΚΟΝΟΜΙΚΑ", "ΔΙΑΧΕΙΡΙΣΗ", "ΥΠΟΔΟΜΗ", "ΕΛΕΓΧΟΣ", "ΧΑΡΤΗΣ"] as const;
+
+const webSectionMeta: Record<string, { title: string; lead: string }> = {
+  "ΜΗΤΡΩΟ": { title: "Μητρώα", lead: "Βάση δεδομένων οργανωμένη και ενιαία." },
+  "ΠΕΔΙΟ": { title: "Πεδίο", lead: "Ροή πληροφοριών από τον υδρονόμο στη διοίκηση." },
+  "ΟΙΚΟΝΟΜΙΚΑ": { title: "Οικονομικά", lead: "Τιμολόγηση, εισπράξεις και πλήρης οικονομική εικόνα." },
+  "ΔΙΑΧΕΙΡΙΣΗ": { title: "Διαχείριση", lead: "Υποθέσεις, πρωτόκολλα και διαδικασίες χωρίς χαρτί." },
+  "ΥΠΟΔΟΜΗ": { title: "Υποδομή", lead: "Εποπτεία κρίσιμων εγκαταστάσεων σε πραγματικό χρόνο." },
+  "ΕΛΕΓΧΟΣ": { title: "Έλεγχος", lead: "Ιχνηλασιμότητα ενεργειών και σαφή δικαιώματα πρόσβασης." },
+  "ΧΑΡΤΗΣ": { title: "Γεωχωρικά", lead: "Χαρτογραφική αποτύπωση για άμεσες αποφάσεις." },
+};
+
+const webModulesGrouped = webSectionOrder
+  .map((chip) => ({
+    chip,
+    meta: webSectionMeta[chip],
+    items: webModules.filter((module) => module.chip === chip),
+  }))
+  .filter((group) => group.items.length > 0);
+
+const webMindmapLeft = webModulesGrouped.filter((_, i) => i % 2 === 0);
+const webMindmapRight = webModulesGrouped.filter((_, i) => i % 2 === 1);
 ---
 
 <Layout
@@ -121,7 +144,6 @@ const webModules = [
       <a href="/el/contact" class="btn-cta">Ζητήστε παρουσίαση</a>
     </div>
   </section>
-
   <!-- Web Modules Section -->
   <section class="container-page section-sm">
     <div class="mb-8">
@@ -130,18 +152,56 @@ const webModules = [
         Πλήρης έλεγχος της λειτουργίας από ένα περιβάλλον.
       </h2>
       <p class="mt-3 max-w-2xl text-slate-600">
-        Μητρώα, οικονομικά, υποθέσεις, αντλιοστάσια και εξαγωγές — όλα με ρόλους χρηστών και πλήρες audit trail.
+        Μητρώα, οικονομικά, υποθέσεις, αντλιοστάσια και εξαγωγές - όλα με ρόλους χρηστών και πλήρες audit trail.
       </p>
     </div>
 
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {webModules.map((item, i) => (
-        <article class="card-soft p-5" data-anim data-anim-delay={String(0.03 * (i + 1))}>
-          <span class={`badge-soft ${badgeClass[item.chip] ?? ""}`}>{item.chip}</span>
-          <h3 class="mt-3 text-base font-semibold text-slate-900">{item.title}</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-600">{item.body}</p>
+    <div class="mindmap-shell card-soft p-5 sm:p-8" data-anim>
+      <div class="mindmap-center-wrap">
+        <article class="mindmap-center">
+          <span class="mindmap-kicker">Web Platform</span>
+          <h3 class="mt-2 text-lg font-semibold text-slate-900">Κεντρικό περιβάλλον διοίκησης</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Όλα τα δεδομένα του ΤΟΕΒ συγκεντρωμένα σε ενιαία εικόνα με ρόλους, ιστορικό και πλήρη έλεγχο ροών.
+          </p>
         </article>
-      ))}
+      </div>
+
+      <div class="mindmap-grid">
+        <div class="mindmap-col">
+          {webMindmapLeft.map((group, gi) => (
+            <article class="mindmap-node" data-anim data-anim-delay={String(0.03 * (gi + 1))}>
+              <div class="mindmap-node-head">
+                <h4 class="mindmap-node-title">{group.meta.title}</h4>
+                <span class={`badge-soft ${badgeClass[group.chip] ?? ""}`}>{group.chip}</span>
+              </div>
+              <p class="mindmap-node-lead">{group.meta.lead}</p>
+              <ul class="mindmap-list">
+                {group.items.map((item) => (
+                  <li>{item.title}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div class="mindmap-col">
+          {webMindmapRight.map((group, gi) => (
+            <article class="mindmap-node" data-anim data-anim-delay={String(0.03 * (gi + 1))}>
+              <div class="mindmap-node-head">
+                <h4 class="mindmap-node-title">{group.meta.title}</h4>
+                <span class={`badge-soft ${badgeClass[group.chip] ?? ""}`}>{group.chip}</span>
+              </div>
+              <p class="mindmap-node-lead">{group.meta.lead}</p>
+              <ul class="mindmap-list">
+                {group.items.map((item) => (
+                  <li>{item.title}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
     </div>
   </section>
 
@@ -159,3 +219,140 @@ const webModules = [
     </div>
   </section>
 </Layout>
+
+<style>
+  .mindmap-shell {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(120% 120% at 50% -10%, rgba(0, 54, 107, 0.08), transparent 45%),
+      #fff;
+  }
+
+  .mindmap-center-wrap {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .mindmap-center-wrap::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -16px;
+    width: 2px;
+    height: 18px;
+    transform: translateX(-50%);
+    background: #cbd5e1;
+  }
+
+  .mindmap-center {
+    width: min(100%, 560px);
+    border: 1px solid #d7e1eb;
+    border-radius: 18px;
+    padding: 1rem 1.1rem;
+    background: linear-gradient(180deg, #ffffff, #f8fbff);
+    box-shadow: 0 10px 26px rgba(15, 35, 60, 0.08);
+    text-align: center;
+  }
+
+  .mindmap-kicker {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #00366b;
+    background: rgba(0, 54, 107, 0.1);
+  }
+
+  .mindmap-grid {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .mindmap-col {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .mindmap-node {
+    position: relative;
+    border: 1px solid #dde6ef;
+    border-radius: 16px;
+    background: #fff;
+    padding: 0.9rem 0.95rem;
+  }
+
+  .mindmap-node-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.7rem;
+  }
+
+  .mindmap-node-title {
+    font-size: 1rem;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .mindmap-node-lead {
+    margin-top: 0.35rem;
+    font-size: 0.83rem;
+    line-height: 1.5;
+    color: #5b6b80;
+  }
+
+  .mindmap-list {
+    margin-top: 0.55rem;
+    padding-left: 1rem;
+    display: grid;
+    gap: 0.2rem;
+    color: #334155;
+    font-size: 0.84rem;
+    line-height: 1.45;
+  }
+
+  @media (min-width: 1024px) {
+    .mindmap-grid {
+      grid-template-columns: 1fr 1fr;
+      column-gap: 1.3rem;
+    }
+
+    .mindmap-grid::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -10px;
+      bottom: 0;
+      width: 2px;
+      transform: translateX(-50%);
+      background: #d5dfeb;
+    }
+
+    .mindmap-node::before {
+      content: "";
+      position: absolute;
+      top: 22px;
+      width: 14px;
+      height: 2px;
+      background: #d5dfeb;
+    }
+
+    .mindmap-col:first-child .mindmap-node::before {
+      right: -14px;
+    }
+
+    .mindmap-col:last-child .mindmap-node::before {
+      left: -14px;
+    }
+  }
+</style>
