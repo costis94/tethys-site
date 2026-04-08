@@ -13,13 +13,34 @@ const badgeClass: Record<string, string> = {
 };
 
 const androidFeatures = [
-  { title: "Offline χάρτης", body: "MapLibre με πλήρες bundle αγροτεμαχίων και δικτύου — λειτουργεί χωρίς internet." },
+  { title: "Offline χάρτης", body: "MapLibre με πλήρες bundle αγροτεμαχίων και δικτύου - λειτουργεί χωρίς internet." },
   { title: "Καταγραφή αρδεύσεων", body: "Επιλογή καλλιέργειας, ποικιλίας, πυκνότητας και κατάστασης ποτίσματος με GPS." },
   { title: "Αναφορές πεδίου", body: "Παραβάσεις, συμβάντα ή ενημερώσεις με έως 5 φωτογραφίες και ακριβή θέση GPS." },
-  { title: "Background sync", body: "Το σύστημα εξασφαλίζει ότι τα δεδομένα ανεβαίνουν αυτόματα — χωρίς χειροκίνητη παρέμβαση." },
+  { title: "Background sync", body: "Το σύστημα εξασφαλίζει ότι τα δεδομένα ανεβαίνουν αυτόματα - χωρίς χειροκίνητη παρέμβαση." },
   { title: "Push notifications", body: "Ειδοποιήσεις για νέες αναφορές, ενημερώσεις και κατάσταση συγχρονισμού." },
   { title: "Dashboard", body: "Άμεση εικόνα ημερήσιων καταγραφών, συνολικών αναφορών και κατάστασης σύνδεσης." },
 ];
+
+const androidMindmapGroups = [
+  {
+    title: "Πεδίο",
+    lead: "Η καθημερινή δραστηριότητα πεδίου καταχωρείται επιτόπου, με οργανωμένη ροή προς τη διοίκηση.",
+    items: ["Καταχώριση αρδεύσεων", "Αναφορές πεδίου"],
+  },
+  {
+    title: "Λειτουργία Εκτός Σύνδεσης",
+    lead: "Η εφαρμογή λειτουργεί εκτός σύνδεσης και συγχρονίζει αυτόματα τα δεδομένα μόλις αποκατασταθεί η πρόσβαση.",
+    items: ["Χάρτης εκτός σύνδεσης", "Αυτόματος συγχρονισμός"],
+  },
+  {
+    title: "Ενημέρωση",
+    lead: "Παρέχει άμεση επιχειρησιακή εικόνα με ειδοποιήσεις και συγκεντρωτικά στοιχεία.",
+    items: ["Ειδοποιήσεις συμβάντων", "Ημερήσια σύνοψη"],
+  },
+];
+
+const androidMindmapLeft = androidMindmapGroups.filter((_, i) => i % 2 === 0);
+const androidMindmapRight = androidMindmapGroups.filter((_, i) => i % 2 === 1);
 
 const webModules = [
   {
@@ -130,17 +151,52 @@ const webMindmapRight = webModulesGrouped.filter((_, i) => i % 2 === 1);
         Λειτουργεί πλήρως εκτός σύνδεσης με offline χάρτη, καταγραφές αρδεύσεων και αναφορές με φωτογραφίες. Όταν αποκατασταθεί σύνδεση, τα δεδομένα συγχρονίζονται αυτόματα στο background.
       </p>
     </div>
-
-    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {androidFeatures.map((item, i) => (
-        <article class="card-soft p-5" data-anim data-anim-delay={String(0.04 * (i + 1))}>
-          <h3 class="text-base font-semibold text-slate-900">{item.title}</h3>
-          <p class="mt-2 text-sm leading-6 text-slate-600">{item.body}</p>
+    <div class="mindmap-shell mindmap-shell-android card-soft p-5 sm:p-8" data-anim>
+      <div class="mindmap-center-wrap">
+        <article class="mindmap-center">
+          <span class="mindmap-kicker">Εφαρμογή Android</span>
+          <h3 class="mt-2 text-lg font-semibold text-slate-900">Εργαλείο πεδίου για καθημερινή λειτουργία</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">
+            Καταγραφή εργασιών πεδίου, λειτουργία εκτός σύνδεσης και αυτόματη ενοποίηση δεδομένων με τη web πλατφόρμα.
+          </p>
         </article>
-      ))}
-    </div>
+      </div>
 
-    <div class="mt-6 flex flex-wrap gap-3">
+      <div class="mindmap-grid">
+        <div class="mindmap-col">
+          {androidMindmapLeft.map((group, i) => (
+            <article class={`mindmap-node ${group.title === "Λειτουργία Εκτός Σύνδεσης" ? "mindmap-node-compact" : ""}`} data-anim data-anim-delay={String(0.03 * (i + 1))}>
+              <div class="mindmap-node-head">
+                <h4 class="mindmap-node-title">{group.title}</h4>
+              </div>
+              <p class="mindmap-node-lead">{group.lead}</p>
+              <ul class="mindmap-list">
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+
+        <div class="mindmap-col">
+          {androidMindmapRight.map((group, i) => (
+            <article class={`mindmap-node ${group.title === "Λειτουργία Εκτός Σύνδεσης" ? "mindmap-node-compact" : ""}`} data-anim data-anim-delay={String(0.03 * (i + 1))}>
+              <div class="mindmap-node-head">
+                <h4 class="mindmap-node-title">{group.title}</h4>
+              </div>
+              <p class="mindmap-node-lead">{group.lead}</p>
+              <ul class="mindmap-list">
+                {group.items.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+<div class="mt-6 flex flex-wrap gap-3">
       <a href="/el/contact" class="btn-cta">Ζητήστε παρουσίαση</a>
     </div>
   </section>
@@ -229,6 +285,12 @@ const webMindmapRight = webModulesGrouped.filter((_, i) => i % 2 === 1);
       #fff;
   }
 
+  .mindmap-shell-android {
+    background:
+      radial-gradient(120% 120% at 50% -10%, rgba(24, 165, 141, 0.1), transparent 45%),
+      #fff;
+  }
+
   .mindmap-center-wrap {
     position: relative;
     display: flex;
@@ -288,6 +350,24 @@ const webMindmapRight = webModulesGrouped.filter((_, i) => i % 2 === 1);
     border-radius: 16px;
     background: #fff;
     padding: 0.9rem 0.95rem;
+  }
+
+  .mindmap-node-compact {
+    align-self: start;
+    max-width: 92%;
+    padding: 0.68rem 0.78rem;
+  }
+
+  .mindmap-node-compact .mindmap-node-lead {
+    margin-top: 0.2rem;
+    font-size: 0.76rem;
+    line-height: 1.38;
+  }
+
+  .mindmap-node-compact .mindmap-list {
+    margin-top: 0.38rem;
+    gap: 0.1rem;
+    font-size: 0.78rem;
   }
 
   .mindmap-node-head {
