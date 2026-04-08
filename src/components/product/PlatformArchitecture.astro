@@ -100,7 +100,8 @@
   .archx-node-head {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
 
@@ -143,6 +144,7 @@
 
   .archx-icon {
     margin-top: 0.62rem;
+    margin-inline: auto;
     width: 44px;
     height: 44px;
     border-radius: 12px;
@@ -179,6 +181,10 @@
     background: linear-gradient(180deg, #ffffff, #f4f9ff);
   }
 
+  .archx-node {
+    text-align: center;
+  }
+
   .archx-link {
     display: none;
   }
@@ -208,9 +214,13 @@
       position: absolute;
       z-index: 1;
       top: 50%;
-      height: 3px;
+      height: 4px;
       transform: translateY(-50%);
-      background: linear-gradient(90deg, rgba(0, 54, 107, 0.2), rgba(0, 80, 158, 0.65), rgba(0, 54, 107, 0.2));
+      background: linear-gradient(90deg, rgba(0, 80, 158, 0.28), rgba(0, 128, 255, 0.95), rgba(0, 80, 158, 0.28));
+      box-shadow:
+        0 0 0 1px rgba(0, 107, 204, 0.18),
+        0 0 16px rgba(0, 128, 255, 0.42),
+        0 0 28px rgba(0, 80, 158, 0.28);
       overflow: hidden;
     }
 
@@ -226,17 +236,25 @@
 
     .archx-pulse {
       display: block;
-      width: 72px;
+      width: 100px;
       height: 100%;
-      background: linear-gradient(90deg, rgba(255, 255, 255, 0), #00509e, #00366b, rgba(255, 255, 255, 0));
+      background: linear-gradient(
+        90deg,
+        rgba(0, 180, 255, 0),
+        #11a3ff 34%,
+        #0078d4 50%,
+        #11a3ff 66%,
+        rgba(0, 180, 255, 0)
+      );
+      filter: drop-shadow(0 0 8px rgba(17, 163, 255, 0.9));
     }
 
     .archx-pulse-left {
-      animation: archxPulseLeft 3.2s linear infinite;
+      animation: archxPulseLeft 2.6s linear infinite;
     }
 
     .archx-pulse-right {
-      animation: archxPulseRight 3.2s linear infinite;
+      animation: archxPulseRight 2.6s linear infinite;
     }
 
     .archx-left,
