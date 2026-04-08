@@ -1,0 +1,266 @@
+<section class="container-page section-sm">
+  <div class="archx-shell card-soft p-6 sm:p-8" data-anim>
+    <div class="mx-auto max-w-3xl text-center">
+      <span class="kicker">Αρχιτεκτονική Πλατφόρμας</span>
+      <h2 class="mt-3 text-[1.55rem] font-semibold text-slate-900 sm:text-[2rem]">Τρεις κόμβοι, μία ενιαία ροή δεδομένων.</h2>
+      <p class="mt-3 text-base leading-7 text-slate-600">
+        Το Tethys Server βρίσκεται στο κέντρο της πλατφόρμας και διασυνδέει το Tethys Android και το Tethys Web
+        με συνεχή συγχρονισμό και κοινή επιχειρησιακή εικόνα.
+      </p>
+    </div>
+
+    <div class="archx-diagram mt-8" data-anim data-anim-delay="0.05">
+      <div class="archx-link archx-link-left" aria-hidden="true">
+        <span class="archx-pulse archx-pulse-left"></span>
+      </div>
+      <div class="archx-link archx-link-right" aria-hidden="true">
+        <span class="archx-pulse archx-pulse-right"></span>
+      </div>
+
+      <article class="archx-node archx-left">
+        <div class="archx-node-head">
+          <span class="archx-chip archx-chip-android">Android</span>
+          <span class="archx-state">ONLINE</span>
+        </div>
+        <div class="archx-icon archx-icon-android" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="7" y="2.5" width="10" height="19" rx="2.8" stroke="currentColor" stroke-width="1.6"></rect>
+            <circle cx="12" cy="18.2" r="0.9" fill="currentColor"></circle>
+            <line x1="9.2" y1="5.8" x2="14.8" y2="5.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"></line>
+          </svg>
+        </div>
+        <h3>Tethys Android</h3>
+        <p>Καταχώριση δεδομένων πεδίου, αναφορές και λειτουργία εκτός σύνδεσης.</p>
+      </article>
+
+      <article class="archx-node archx-core">
+        <div class="archx-node-head">
+          <span class="archx-chip archx-chip-server">Server</span>
+          <span class="archx-state">ACTIVE</span>
+        </div>
+        <div class="archx-icon archx-icon-server" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="4" y="4" width="16" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"></rect>
+            <rect x="4" y="14" width="16" height="6" rx="1.8" stroke="currentColor" stroke-width="1.6"></rect>
+            <circle cx="8" cy="7" r="0.8" fill="currentColor"></circle>
+            <circle cx="8" cy="17" r="0.8" fill="currentColor"></circle>
+          </svg>
+        </div>
+        <h3>Tethys Server</h3>
+        <p>Κεντρικός κόμβος συγχρονισμού, αποθήκευσης και διανομής δεδομένων.</p>
+      </article>
+
+      <article class="archx-node archx-right">
+        <div class="archx-node-head">
+          <span class="archx-chip archx-chip-web">Web</span>
+          <span class="archx-state">ONLINE</span>
+        </div>
+        <div class="archx-icon archx-icon-web" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <rect x="3.5" y="4" width="17" height="13" rx="2" stroke="currentColor" stroke-width="1.6"></rect>
+            <line x1="3.5" y1="8.5" x2="20.5" y2="8.5" stroke="currentColor" stroke-width="1.2"></line>
+            <circle cx="6.3" cy="6.2" r="0.6" fill="currentColor"></circle>
+            <circle cx="8.5" cy="6.2" r="0.6" fill="currentColor"></circle>
+            <circle cx="10.7" cy="6.2" r="0.6" fill="currentColor"></circle>
+          </svg>
+        </div>
+        <h3>Tethys Web</h3>
+        <p>Διοίκηση, οικονομικά και επιχειρησιακή παρακολούθηση σε ενιαίο περιβάλλον.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .archx-shell {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(130% 110% at 50% -12%, rgba(0, 54, 107, 0.07), transparent 44%),
+      linear-gradient(180deg, #ffffff, #f9fcff);
+  }
+
+  .archx-diagram {
+    position: relative;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+
+  .archx-node {
+    position: relative;
+    z-index: 2;
+    border: 1px solid #d6e0eb;
+    border-radius: 15px;
+    background: linear-gradient(180deg, #ffffff, #fbfdff);
+    padding: 0.82rem 0.88rem;
+    box-shadow: 0 10px 24px rgba(15, 35, 60, 0.06);
+  }
+
+  .archx-node-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .archx-chip {
+    display: inline-flex;
+    align-items: center;
+    height: 1.5rem;
+    border-radius: 999px;
+    padding: 0 0.6rem;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .archx-chip-android {
+    color: #0f766e;
+    background: #ccfbf1;
+    border: 1px solid #99f6e4;
+  }
+
+  .archx-chip-server {
+    color: #1e3a8a;
+    background: #dbeafe;
+    border: 1px solid #bfdbfe;
+  }
+
+  .archx-chip-web {
+    color: #5b21b6;
+    background: #ede9fe;
+    border: 1px solid #ddd6fe;
+  }
+
+  .archx-state {
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    color: #334155;
+  }
+
+  .archx-icon {
+    margin-top: 0.62rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #d3deea;
+    color: #0f172a;
+    background: #f8fbff;
+  }
+
+  .archx-icon svg {
+    width: 23px;
+    height: 23px;
+  }
+
+  .archx-node h3 {
+    margin-top: 0.62rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+  }
+
+  .archx-node p {
+    margin-top: 0.36rem;
+    font-size: 0.82rem;
+    line-height: 1.45;
+    color: #5b6b80;
+  }
+
+  .archx-core {
+    border-color: #bcd2eb;
+    background: linear-gradient(180deg, #ffffff, #f4f9ff);
+  }
+
+  .archx-link {
+    display: none;
+  }
+
+  @keyframes archxPulseLeft {
+    0%, 8% { transform: translateX(-100%); opacity: 0; }
+    12%, 42% { opacity: 0.95; }
+    48%, 100% { transform: translateX(100%); opacity: 0; }
+  }
+
+  @keyframes archxPulseRight {
+    0%, 52% { transform: translateX(100%); opacity: 0; }
+    58%, 88% { opacity: 0.95; }
+    94%, 100% { transform: translateX(-100%); opacity: 0; }
+  }
+
+  @media (min-width: 1024px) {
+    .archx-diagram {
+      grid-template-columns: 1fr 1fr 1fr;
+      align-items: center;
+      gap: 1.15rem;
+      min-height: 250px;
+    }
+
+    .archx-link {
+      display: block;
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      height: 3px;
+      transform: translateY(-50%);
+      background: linear-gradient(90deg, rgba(0, 54, 107, 0.2), rgba(0, 80, 158, 0.65), rgba(0, 54, 107, 0.2));
+      overflow: hidden;
+    }
+
+    .archx-link-left {
+      left: 18%;
+      right: 50%;
+    }
+
+    .archx-link-right {
+      left: 50%;
+      right: 18%;
+    }
+
+    .archx-pulse {
+      display: block;
+      width: 72px;
+      height: 100%;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0), #00509e, #00366b, rgba(255, 255, 255, 0));
+    }
+
+    .archx-pulse-left {
+      animation: archxPulseLeft 3.2s linear infinite;
+    }
+
+    .archx-pulse-right {
+      animation: archxPulseRight 3.2s linear infinite;
+    }
+
+    .archx-left,
+    .archx-right {
+      transform: translateY(10px);
+    }
+
+    .archx-left,
+    .archx-right {
+      max-width: 260px;
+    }
+
+    .archx-left {
+      justify-self: end;
+    }
+
+    .archx-right {
+      justify-self: start;
+    }
+
+    .archx-core {
+      max-width: 290px;
+      margin-inline: auto;
+      justify-self: center;
+    }
+  }
+</style>

@@ -1,6 +1,8 @@
 ---
 import Layout from "../../components/Layout.astro";
 import PageIntro from "../../components/marketing/PageIntro.astro";
+import CTA from "../../components/home/CTA.astro";
+import PlatformArchitecture from "../../components/product/PlatformArchitecture.astro";
 
 const badgeClass: Record<string, string> = {
   "ΜΗΤΡΩΟ":    "badge-registry",
@@ -196,9 +198,6 @@ const webMindmapRight = webModulesGrouped.filter((_, i) => i % 2 === 1);
         </div>
       </div>
     </div>
-<div class="mt-6 flex flex-wrap gap-3">
-      <a href="/el/contact" class="btn-cta">Ζητήστε παρουσίαση</a>
-    </div>
   </section>
   <!-- Web Modules Section -->
   <section class="container-page section-sm">
@@ -261,19 +260,8 @@ const webMindmapRight = webModulesGrouped.filter((_, i) => i % 2 === 1);
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="container-page section-sm">
-    <div class="card-soft p-8 text-center sm:p-10" data-anim>
-      <h2 class="text-2xl font-semibold text-slate-900 sm:text-3xl">Θέλετε παρουσίαση με τα δικά σας σενάρια;</h2>
-      <p class="mx-auto mt-4 max-w-2xl text-slate-600">
-        Σας δείχνουμε πώς η ροή πεδίου και η διοίκηση ενοποιούνται στην πράξη — με πραγματικά δεδομένα.
-      </p>
-      <div class="mt-7 flex flex-wrap justify-center gap-3">
-        <a href="/el/contact" class="btn-cta">Κλείστε παρουσίαση</a>
-        <a href="/el/" class="btn-ghosty">Επιστροφή στην αρχική</a>
-      </div>
-    </div>
-  </section>
+  <PlatformArchitecture />
+  <CTA />
 </Layout>
 
 <style>
